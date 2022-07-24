@@ -34,7 +34,7 @@ console.log(users)
 
 
   return (
-    <div>
+    <div class= "mainBg">
       <Nav />
       <Routes>
         <Route path='/' element={<Home />}/>
