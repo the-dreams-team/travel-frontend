@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import NewTrip from './pages/NewTrip';
 import Portfolio from './pages/Portfolio';
 import SignUp from './pages/SignUp';
-
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -42,6 +42,8 @@ console.log(users)
         <Route path='/newtrip' element={<NewTrip />} />
         <Route path='/portfolio' element={<Portfolio />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/profile' element={<Profile />} />
+
       </Routes>
     </div>
   );

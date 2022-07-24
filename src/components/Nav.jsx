@@ -30,6 +30,7 @@ const Navbar = ({user , setUser}) => {
           <li> <Link to='/signup'> Sign Up </Link></li>
           <li> <Link to='/login'> Login </Link></li>
           <li> <Link to='/portfolio'> Portfolio </Link></li>
+          <li> <Link to='/profile'> Profile </Link></li>
         </ul>
   
       </NavbarContainer>
