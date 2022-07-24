@@ -30,7 +30,7 @@ const SignUp = () => {
             class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
-            placeholder="******************"
+            placeholder="*********"
           />
           <p class="text-red-500 text-xs italic">Please create a password.</p>
         </div>
@@ -49,8 +49,8 @@ const SignUp = () => {
           </a>
         </div>
       </form>
-      <p class="text-center text-gray-500 text-xs">
-        &copy;2022 the dream team all rights reserved
+      <p class="text-center text-white-500 text-xs  h-4 bg-gradient-to-r from-cyan-500 to-blue-500">
+        &copy;2022 the dream team all rights reserved 
       </p>
     </div>
   </div>

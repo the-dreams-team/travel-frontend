@@ -49,7 +49,7 @@ const Login = () => {
             </a>
           </div>
         </form>
-        <p class="text-center text-gray-500 text-xs">
+        <p class="text-center text-white-500 text-xs  h-4 bg-gradient-to-r from-cyan-500 to-blue-500">
           &copy;2022 the dream team all rights reserved
         </p>
       </div>
