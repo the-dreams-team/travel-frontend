@@ -1,13 +1,15 @@
 import React from 'react'
-
-const Home = () => {
+import Trip from '../components/Trip'
+import Calendar from 'react-calendar'
+const Home = ({alltrips}) => {
   return (
     <div>
         
     <h1   style={{textAlign: 'center'}}>
       Welcome to the Trip Planner 
     </h1>
-
+        <Trip alltrips={alltrips}/>
+     
     </div>
   )
 }

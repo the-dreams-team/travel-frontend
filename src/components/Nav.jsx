@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 
+
 const NavbarContainer = styled.nav`
     background-color: #c0ffee;
     padding: 5px;
@@ -17,6 +18,7 @@ const NavbarContainer = styled.nav`
 `
 
 
+
 const Navbar = ({user , setUser}) => {
     const navigate = useNavigate()
 
@@ -27,9 +29,7 @@ const Navbar = ({user , setUser}) => {
         <ul> 
           <li> <Link to="/"> Home </Link></li>
           <li> <Link to='/newtrip'> New Trip </Link></li>
-          <li> <Link to='/signup'> Sign Up </Link></li>
           <li> <Link to='/login'> Login </Link></li>
-          <li> <Link to='/portfolio'> Portfolio </Link></li>
           <li> <Link to='/profile'> Profile </Link></li>
         </ul>
   
@@ -39,3 +39,6 @@ const Navbar = ({user , setUser}) => {
 }
 
 export default Navbar
+
+
+

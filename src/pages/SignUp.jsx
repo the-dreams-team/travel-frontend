@@ -1,6 +1,11 @@
 import React from 'react'
 
 const SignUp = () => {
+
+  // need to add the axios post to /signup with formdata
+  //need to add in handling for the jwt returned
+
+
   return (
     <div class="form1 mainBg">
     <div class="w-full max-w-xs  items-center py-12">

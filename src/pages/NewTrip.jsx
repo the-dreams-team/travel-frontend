@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useState } from 'react'
+import Calendar from 'react-calendar'
+
 
 const NewTrip = ({ addTrip }) => {
 
@@ -18,6 +20,10 @@ const NewTrip = ({ addTrip }) => {
     returnDate: '',
     departureCity: "",
     arrivalCity: "",
+    ticketPrice: "String", 
+    numberPassengers: "String",
+    airlineType: "String",
+    flightId: "String"
 
   }
 
@@ -69,6 +75,14 @@ const NewTrip = ({ addTrip }) => {
         </div>
 
         {/* // for our arrival date */}
+             {/* departure calendar */}
+             <div class="containerCal">
+        <Calendar />
+        </div>
+        {/* return calendar */}
+        <div class="containerCal">
+        <Calendar />
+        </div>
 
         <div> 
             <label htmlFor='dateArrival'> Arrival Date </label>
@@ -89,7 +103,41 @@ const NewTrip = ({ addTrip }) => {
           <input id='arrivalCity' name='arrivalCity' type='text' onChange = {handleChange} />  
         </div>
 
-        
+          {/* // ticket price */}
+
+        <div>
+    <label htmlFor='ticketPrice'> Ticket Price </label>
+    <input id='ticketPrice' name='ticketPrice' type='text' onChange = {handleChange} />  
+  </div>
+
+        {/* //number of passengers */}
+
+  <div>
+    <label htmlFor='numberPasssengers'> Number of Passengers </label>
+    <input id='numberPasssengers' name='numberPasssengers' type='text' onChange = {handleChange} />  
+  </div>
+
+        {/* //name of airline */}
+
+
+  <div>
+    <label htmlFor='airlineType'> Airline Type </label>
+    <input id='airlineType' name='airlineType' type='text' onChange = {handleChange} />  
+  </div>
+
+
+        {/* //flight id */}
+
+  <div>
+    <label htmlFor='flightId'> Flight # </label>
+    <input id='flightId' name='flightId' type='text' onChange = {handleChange} />  
+  </div>
+
+
+
+
+        <input type='submit' value='Create New Trip' />
+
 </StyledForm>
 
   )
