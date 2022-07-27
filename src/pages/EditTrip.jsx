@@ -9,6 +9,10 @@ import { useNavigate } from 'react-router'
 //add the styled form like before (placeholder for now)
 const StyledForm = styled.div`
 margin: 20px;
+h1 {
+  background-color: blue;
+  
+}
 
 `
 
@@ -66,13 +70,20 @@ return (
 
 <StyledForm onSubmit={handleSubmit}>
       
-<h1> Edit Current Trip </h1>
-  
+
+<div>
+  <section>
+    <h1> Edit Current Trip </h1>
+  </section>
+</div>
+
   {/* //adding the name of the trip here  */}
   
   <div>
+    <section>
       <label htmlFor='name'> Name  </label>
       <input id='name' name='name' type='text' onChange = {handleChange} />   
+    </section>
   </div>
 
   {/* //for our departure date */}
