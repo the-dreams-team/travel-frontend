@@ -31,7 +31,8 @@ const NewTrip = ({ addTrip }) => {
     ticketPrice: "", 
     numberPassengers: "",
     airlineType: "",
-    flightId: ""
+    flightId: "",
+    favorite: '',
     
   }
   
@@ -75,7 +76,7 @@ const NewTrip = ({ addTrip }) => {
     
     
     
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm className='' onSubmit={handleSubmit}>
      
         <div>
           <section>

@@ -15,7 +15,6 @@ h1 {
 }
 
 `
-
 //to edit our current trip
 const EditTrip = ({ setTrips }) => {
 
@@ -30,11 +29,11 @@ const EditTrip = ({ setTrips }) => {
         returnDate: '',
         departureCity: "",
         arrivalCity: "",
-        ticketPrice: "String", 
-        numberPassengers: "String",
-        airlineType: "String",
-        flightId: "String"
-
+        ticketPrice: "", 
+        numberPassengers: "",
+        airlineType: "",
+        flightId: '',
+        favorite: '',
 
     }
 

@@ -74,7 +74,7 @@ const updateTripsState = (id) => {
 
   return (
     <div className= "mainBg">
-      <Nav />
+      {/* <Nav /> */}
       <NavTest/>
       <Routes>
         <Route path='/' element={<Home />}/>

@@ -1,20 +1,27 @@
-import React from 'react'
-import Trip from '../components/Trip'
-import Calendar from 'react-calendar'
-const Home = ({alltrips, updateState}) => {
-
-
-
+import React from "react";
+import Trip from "../components/Trip";
+import Calendar from "react-calendar";
+import { Link } from "react-router-dom";
+import ExplainPage from "../components/ExplainPage";
+const Home = ({ alltrips, updateState }) => {
   return (
-    <div>
-        
-    <h1   style={{textAlign: 'center'}}>
-      Welcome to the Trip Planner 
-    </h1>
-        <>  </>
-     
-    </div>
-  )
-}
 
-export default Home
+
+
+
+
+
+
+
+    
+    <div className="flex flex-wrap items-center min-h-screen">
+    
+      <ExplainPage/>
+    
+
+      
+    </div>
+  );
+};
+
+export default Home;

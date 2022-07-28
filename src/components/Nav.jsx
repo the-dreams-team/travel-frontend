@@ -6,6 +6,8 @@ import styled from 'styled-components'
 const NavbarContainer = styled.nav`
     background-color: #c0ffee;
     padding: 5px;
+    font-weight: 400;
+    background-color: #E5E7EB;
     
     ul {
         display: flex;
@@ -14,8 +16,7 @@ const NavbarContainer = styled.nav`
     li {
         list-style: none;
     }
-
-`
+  `
 
 
 
