@@ -88,7 +88,11 @@ const Login = ({saveUser}) => {
             </a>
           </div>
         </form>
+      
+     <button> 
         <Link to='/signup'>Sign Up</Link>
+      </button>
+
         <p className="text-center text-white-500 text-xs  h-4 bg-gradient-to-r from-cyan-500 to-blue-500">
           &copy;2022 the dream team all rights reserved
         </p>

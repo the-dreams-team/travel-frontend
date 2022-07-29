@@ -1,12 +1,12 @@
 import React from 'react'
 import Trip from '../components/Trip'
-const UserTrips = ({alltrips, updateState}) => {
+const UserTrips = ({alltrips, updateState, updateFavorite}) => {
   return (
     <div>
 
      
           <>
-            <Trip alltrips={alltrips} updateState = {updateState} />
+            <Trip alltrips={alltrips} updateState = {updateState} updateFavorite={updateFavorite} />
           </>
         
       

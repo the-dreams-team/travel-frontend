@@ -12,10 +12,20 @@
 
 
 }
-
+.dates{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calender{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
 
 .containerCal{
-  width: 200px;
+  width: 240px;
   height: 200px;
   background-color: darkblue;
   color: white;
@@ -33,6 +43,13 @@
   background-size: cover;
 }
 
+.newForm{
+  max-width: 60%;
+display: inline-flex;
+justify-content: space-around;
+
+
+}
 
 
 .forms{

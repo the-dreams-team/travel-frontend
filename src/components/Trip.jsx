@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-
-const Trip = ({ alltrips, updateState, setTrips })=> {
-  let { id } =  useParams()
-  console.log(alltrips);
+import FavoriteTrips from "./FavoriteTrips";
+const Trip = ({ alltrips, updateState, setTrips, updateFavorite })=> {
 
 
-
-  const [isFavorite, setIsFavorite] = useState(null)
 
   const deleteTrip = (id) => {
     axios.delete(`http://localhost:3020/trips/${id}`)
@@ -20,35 +16,27 @@ const Trip = ({ alltrips, updateState, setTrips })=> {
     });
   };
 
-  // const handelChange = (e) => {
-  //   console.log(e.target)
-  //   setIsFavorite({...FormData, [e.target.id] : e.target.value})
-
-  // }
-
-
-  // 
+  
   const handleFavorite = (id, favorite) => {
-    console.log(favorite)
+    console.log('trip.favorite =',favorite)
     if(favorite === true) {
-      setIsFavorite(false)
-      console.log(isFavorite)
       //send axios request with favorite = false
+      axios.put(`http://localhost:3020/trips/${id}`, {favorite: false})
+      .then(res => {
+        updateFavorite(res.data._id)
+      })
+
     }
     if(favorite === false) {
-      setIsFavorite(true)
-      console.log(isFavorite)
       //send axios request with favorite = true
+      axios.put(`http://localhost:3020/trips/${id}`, {favorite: true})
+      .then(res => {
+        updateFavorite(res.data._id)
+      })
     }
-
-  //  axios.put(`http://localhost:3020/trips/${id}`, isFavorite)
-  //  .then(res => {
-  //    console.log(res.data)
-  //     setTrips(res.data)
-  //    updateState()
-  //   })
-}
+  }
   
+ 
 
   
   
@@ -84,47 +72,48 @@ const Trip = ({ alltrips, updateState, setTrips })=> {
                   <div className="dates font-medium">
                     {trip.departureDate} - {trip.returnDate}
                   </div>
-
+                  
                   <div className="dates font-medium">
                     {trip.flightId} - {trip.airlineType}
                   </div>
                   <div>
                     {trip.favorite}
                   </div>
-                  <button
-                    type="button"
-                    className="inline-flex items-center px-2.5 py-1.5 border border-transparent 
-                    text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
-                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Edit
-                  </button>
-                  
-                 <div>
-                   <button onClick={() => handleFavorite(trip._id, trip.favorite)} 
-                    value= {trip.favorite} name= "favorite" 
-                    className="inline-flex items-center px-2.5 py-1.5 border border-transparent 
-                    text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
-                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >                
-                   {trip.favorite ? <span><u> ♥️ </u></span> : <span>♥️</span> }
+
+                  <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-2.5 py-1.5 border border-transparent 
+                      text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Edit
                     </button>
+                    
+                  <div>
+                    <button onClick={() => handleFavorite(trip._id, trip.favorite)} 
+                      className="inline-flex items-center px-2.5 py-1.5 border border-transparent 
+                      text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >                
+                    {trip.favorite ? <span><u> ♥️ </u></span> : <span>♥️</span> }
+                      </button>
+                    </div>
+
+                    
+                    <Link to={`/trip/${trip._id}`} >
+                    <button
+                      type="button"  
+
+                      /*onClick={routeChange}*/
+                      className="inline-flex items-center px-2.5 py-1.5 border border-transparent 
+                      text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      🔎
+                    </button></Link>
+                    
                   </div>
-
-                  
-                  <Link to={`/trip/${trip._id}`} >
-                  <button
-                    type="button"  
-
-                    /*onClick={routeChange}*/
-                    className="inline-flex items-center px-2.5 py-1.5 border border-transparent 
-                    text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
-                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    🔎
-                  </button></Link>
-                  {/* <Link to={`/trip/${trip._id}`} ><button>Show More</button></Link> */}
-
                   
                 </div>
               </div>
@@ -133,8 +122,11 @@ const Trip = ({ alltrips, updateState, setTrips })=> {
         );
       }
     )}
+    <div>
+      <h1> <FavoriteTrips  allTrips={alltrips} updateFavorite/> </h1>
+ {updateFavorite}    </div>
     </div>
-  );
-};
+      )
+    }
 
 export default Trip;

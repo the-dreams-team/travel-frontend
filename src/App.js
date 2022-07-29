@@ -42,12 +42,6 @@ useEffect(()=>{
 
 console.log(trips)
 
-// useEffect(()=>{
-//   fetch('http://localhost:3020/user')
-//   .then(res => res.json())
-//   .then(users=> setUsers(users))
-// }, [])
-
 
 useEffect(()=>{
   const fetchFlightData = async () => {
@@ -60,13 +54,20 @@ useEffect(()=>{
   
 })
 
-
-
-//console.log(users)
-
-
+//updates the trips array after the user deletes a trip and the db is updated
 const updateTripsState = (id) => {
   setTrips(trips.filter(trips => trips._id !== id))
+}
+
+//updates the trip.favorite after the user clicks on favorite and the db is updated
+const updateFavorite = (id) => {
+  const newState = trips.map(trip => {
+    if(trip === id){
+      return {...trip, favorite: !trip.favorite}
+    }
+    return trip
+  })
+  setTrips(newState)
 }
 
 
@@ -78,12 +79,12 @@ const updateTripsState = (id) => {
       <NavTest/>
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/usertrips' element={<UserTrips alltrips={trips} updateState={updateTripsState}/>} />
+        <Route path='/usertrips' element={<UserTrips alltrips={trips} updateState={updateTripsState} updateFavorite={updateFavorite}/>} />
         <Route path='/login' element={<Login saveUser={saveUser}/>} />
         <Route path='/newtrip' element={<NewTrip />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
-        <Route path='/trip/:id' element={<IndividualTripView/>} />
+        <Route path='/trip/:id' element={<IndividualTripView/> } />
       </Routes>
     </div>
   );
