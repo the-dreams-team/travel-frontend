@@ -11,7 +11,7 @@ import Profile from './pages/Profile';
 import NavTest from './components/NavTest';
 import IndividualTripView from './pages/IndividualTripView'
 import UserTrips from './pages/UserTrips';
-
+import FavoriteTrips from './components/FavoriteTrips';
 
 function App() {
 
@@ -85,6 +85,7 @@ const updateFavorite = (id) => {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView/> } />
+        <Route path='/favorites' element={<FavoriteTrips />} />
       </Routes>
     </div>
   );

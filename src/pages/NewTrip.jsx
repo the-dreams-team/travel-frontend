@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { autocomplete } from "air-port-codes-node";
+import Checkboxes from "../components/Search/Checkboxes";
+// import MainSearch from "./MainSearch";
+
 
 const NewTrip = ({ addTrip }) => {
   const StyledForm = styled.div`
@@ -54,24 +57,28 @@ const NewTrip = ({ addTrip }) => {
   apca.request(term);
 
   return (
-    <div className="bg-gray-800 bg-opacity-50 align-middle items-center text-center min-h-screen  bg-auto  ">
-      
-      <div className="newForm">
-      <StyledForm class="bg-purple-600 max-w-x newForm" onSubmit={handleSubmit}>
-        <div>
-          <section>
-            <div className="newTripTitle"> </div>
+    <div className="bg-yellow  bg-opacity-80 w-fit align-middle items-center text-center   min-h-screen  bg-auto  ">
+      <div className="newForm flex items-center">
+        <StyledForm
+          className="w-4/4   bg-gray-600   newForm "
+          onSubmit={handleSubmit}
+        >
+          <div className="bg-white">
+            <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+              <div className="text-center">
+                <h2 className="text-base font-semibold text-indigo-600 tracking-wide uppercase">
+                  FIll Form
+                </h2>
+                <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                  Create a New Trip
+                </p>
+              </div>
+            </div>
+          </div>
 
-            <label className="text-5xl font-mono text-white ">
-              {" "}
-              Create a new trip!{" "}
-            </label>
-          </section>
-        </div>
+          {/* //adding the name of the trip here  */}
 
-        {/* //adding the name of the trip here  */}
-
-        <div className="bg-gray-600 ">
+          {/* <div className="bg-gray-600 ">
           <label className="text-yellow-600 text-1xl font-mono block mt-4 py-5 padding-top: 10px">
             {" "}
             Name{" "}
@@ -84,57 +91,39 @@ const NewTrip = ({ addTrip }) => {
             value={formData.tripName}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
 
-        {/* //for our departure date */}
+          {/* <div className="border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+      <label htmlFor="name" className="block text-xs font-medium text-gray-900">
+        Name
+      </label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+        placeholder="Jane Smith"
+      />
+    </div> */}
 
-        <div className="bg-gray-600  flex items-center content-center dates mt-2">
           <div>
-            <label className=" text-yellow-600 text 1xl font-mono block mt-6 py-5 padding-top: 5px align-content: center space-x-2">
-              {" "}
-              Departure Date{" "}
+            <label htmlFor="email" className="sr-only">
+              Email
             </label>
             <input
-              id="date"
-              name="date"
-              type="text"
-              value={formData.departureDate}
-              // onChange={handleChange}
+              type="name"
+              name="name"
+              id="name"
+              className=" mt-2 w-1/2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block  sm:text-sm border-gray-300 rounded-md"
+              placeholder="Name of Trip"
             />
           </div>
-          <div className="bg-gray-600">
-            <label className="text-yellow-600 text 1xl font-mono block mt-6 py-5 padding-top: 5px align-content: center">
-              {" "}
-              Arrival Date{" "}
-            </label>
-            <input
-              id="dateArrival"
-              name="dateArrival"
-              type="text"
-              value={formData.dateArrival}
-              onChange={handleChange}
-            />
-          </div>
+        <div>
+
         </div>
-
-        {/* // for our arrival date */}
-        {/* departure calendar */}
-
-        <div className=" calender gap-6  ">
-          <div class="containerCal gap-6  ">
-            <h2>Departure Date</h2>
-            <Calendar />
-          </div>
-          {/* return calendar */}
-          <div class="containerCal ">
-            <h2>Return Date</h2>
-            <Calendar />
-          </div>
-        </div>
-
-        {/* //departure city  */}
-
-        <div className="bg-gray-600 ">
+          {/* //departure city  */}
+          <div className="flex ">
+            {/* <div className="bg-gray-600 m-1 ">
           <label className="text-yellow-600 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
             {" "}
             Departure City{" "}
@@ -146,11 +135,42 @@ const NewTrip = ({ addTrip }) => {
             value={formData.departureCity}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
+            <div>
+              {/* <MainSearch/> */}
+              <Checkboxes/>
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="departureCity"
+                name="departureCity"
+                type="text"
+                // value={formData.arrivalCity}
+                // onChange={handleChange}
+                className=" mt-4 p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                placeholder="Departure City"
+              />
+            </div>
 
-        {/* //arrival city  */}
+            <div>
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="arrivalCity"
+                name="arrivalCity"
+                type="text"
+                // value={formData.arrivalCity}
+                // onChange={handleChange}
+                className=" mt-4 p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                placeholder="Arrival City"
+              />
+            </div>
 
-        <div className="bg-gray-600 ">
+            {/* //arrival city  */}
+            {/* 
+        <div className="bg-gray-600 m-1">
           <label className="text-yellow-600 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
             {" "}
             Arrival City{" "}
@@ -162,80 +182,158 @@ const NewTrip = ({ addTrip }) => {
             value={formData.arrivalCity}
             onChange={handleChange}
           />
-        </div>
+          </div> */}
+          </div>
 
-        {/* // ticket price */}
+          {/* //for our departure date */}
 
-        <div className="bg-gray-600 ">
-          <label className="text-yellow-600 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
-            {" "}
-            Ticket Price ($){" "}
-          </label>
-          <input
-            id="ticketPrice"
-            name="ticketPrice"
-            type="text"
-            value={formData.ticketPrice}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="  flex items-center content-center dates mt-2">
+            
+          <div>
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="arrivalCity"
+                name="arrivalCity"
+                type="text"
+                // value={formData.arrivalCity}
+                // onChange={handleChange}
+                className="mt-4 p-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                placeholder="Departure Date"
+              />
+            </div>
+            
+            
+            {/* <div className="m-1 bg-gray-600">
+              <label className=" text-yellow-600 text 1xl font-mono block mt-6 py-5 padding-top: 5px align-content: center space-x-2">
+                {" "}
+                Departure Date{" "}
+              </label>
+              <input
+                id="date"
+                name="date"
+                type="text"
+                value={formData.departureDate}
+                // onChange={handleChange}
+              />
+            </div> */}
+            {/* <div className="bg-gray-600 m-1">
+              <label className="text-yellow-600 text 1xl font-mono block mt-6 py-5 padding-top: 5px align-content: center">
+                {" "}
+                Arrival Date{" "}
+              </label>
+              <input
+                id="dateArrival"
+                name="dateArrival"
+                type="text"
+                value={formData.dateArrival}
+                onChange={handleChange}
+              />
+            </div> */}
+            <div>
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="arrivalCity"
+                name="arrivalCity"
+                type="text"
+                // value={formData.arrivalCity}
+                // onChange={handleChange}
+                className=" mt-4  p-1 gap-1 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                placeholder="Return Date"
+              />
+            </div>
+          </div>
 
-        {/* //number of passengers */}
+          {/* // for our arrival date */}
+          {/* departure calendar */}
 
-        <div className="bg-gray-600 ">
-          <label className="text-yellow-600 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
-            {" "}
-            Number of Passengers{" "}
-          </label>
-          <input
-            id="numberPasssengers"
-            name="numberPasssengers"
-            type="text"
-            value={formData.numberPassengers}
-            onChange={handleChange}
-          />
-        </div>
+          <div className=" calender gap-6  ">
+            {/* <div class="containerCal gap-6  ">
+            <h2>Departure Date</h2>
+            <Calendar />
+          </div> */}
+            {/* return calendar */}
+            {/* <div class="containerCal ">
+            <h2>Return Date</h2>
+            <Calendar />
+          </div> */}
+          </div>
 
-        {/* //name of airline */}
+          {/* // ticket price */}
 
-        <div className="bg-gray-600 ">
-          <label className="text-yellow-600 text 1xl font-mono block mt-4 py-4 padding-top: 5px;">
-            {" "}
-            Airline Type{" "}
-          </label>
-          <input
-            id="airlineType"
-            name="airlineType"
-            type="text"
-            value={formData.airlineType}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="bg-gray-600 ">
+            <label className="text-yellow-600 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
+              {" "}
+              Ticket Price ($){" "}
+            </label>
+            <input
+              id="ticketPrice"
+              name="ticketPrice"
+              type="text"
+              value={formData.ticketPrice}
+              onChange={handleChange}
+            />
+          </div>
 
-        {/* //flight id */}
+          {/* //number of passengers */}
 
-        <div className="bg-gray-600 ">
-          <label className="text-yellow-600 text 2xl font-mono block mt-4 py-5 padding-top: 5px padding-bottom: 10px">
-            {" "}
-            Flight #{" "}
-          </label>
-          <input
-            id="flightId"
-            name="flightId"
-            type="text"
-            value={formData.flightId}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="bg-gray-600 ">
+            <label className="text-yellow-600 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
+              {" "}
+              Number of Passengers{" "}
+            </label>
+            <input
+              id="numberPasssengers"
+              name="numberPasssengers"
+              type="text"
+              value={formData.numberPassengers}
+              onChange={handleChange}
+            />
+          </div>
 
-        {/* <input type='submit' value='Create New Trip' /> */}
+          {/* //name of airline */}
+          <div classname="flex">
+            <div className="bg-gray-600 ">
+              <label className="text-yellow-600 text 1xl font-mono block mt-4 py-4 padding-top: 5px;">
+                {" "}
+                Airline Type{" "}
+              </label>
+              <input
+                id="airlineType"
+                name="airlineType"
+                type="text"
+                value={formData.airlineType}
+                onChange={handleChange}
+              />
+            </div>
 
-        <div class="flex items-center justify-between">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
-            Create New Trip
-          </button>
-        </div>
-      </StyledForm>
+            {/* //flight id */}
+
+            <div className="bg-gray-600 ">
+              <label className="text-yellow-600 text 2xl font-mono block ">
+                {" "}
+                Flight #{" "}
+              </label>
+              <input
+                id="flightId"
+                name="flightId"
+                type="text"
+                value={formData.flightId}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          {/* <input type='submit' value='Create New Trip' /> */}
+
+          <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
+              Create New Trip
+            </button>
+          </div>
+        </StyledForm>
       </div>
     </div>
   );

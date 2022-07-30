@@ -12,11 +12,11 @@
 
 
 }
-.dates{
+/* .dates{
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 .calender{
   display: flex;
   justify-content: center;
@@ -43,13 +43,13 @@
   background-size: cover;
 }
 
-.newForm{
+/* .newForm{
   max-width: 60%;
 display: inline-flex;
 justify-content: space-around;
 
 
-}
+} */
 
 
 .forms{
