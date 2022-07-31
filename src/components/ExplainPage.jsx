@@ -8,6 +8,9 @@ const ExplainPage = () => {
         <span className="block">Welcome to our Travel Planner</span>
         <span className="block text-indigo-600">Try adding your trip itinerary to see flight prices, weather, and even track multiple trips.</span>
       </h2>
+      <p className="text-1xl font-extrabold tracking-tight text-gray-900 sm:text-1xl">
+        <span className="block text-indigo-600">Below is your favorited trips (if not shown try favorting a trip)</span>
+      </p>
       <div className="mt-8 flex">
         <div className="inline-flex rounded-md shadow">
           <a

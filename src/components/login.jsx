@@ -4,6 +4,6 @@ const login = ({user}) => {
   return (
     <div>login</div>
   )
-}
+}       
 
 export default login

@@ -2,6 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAmadeusData } from '../../api/api';
 import { debounce } from 'lodash';
+import Autocomplete from '@mui/material/Autocomplete'
+import { TextField } from '@mui/material';
+
 
 const SearchAutocomplete = (props) => {
   const [open, setOpen] = useState(false);
@@ -21,22 +24,40 @@ const SearchAutocomplete = (props) => {
   }, [search]);
 
   useEffect(() => {
-    const { userRequest, currentRequest } = getAmadeusData({...props.search }) 
-  }, [keyword])
+    const { userRequest, currentRequest } = getAmadeusData({...props.search, page: 0, keyword }) 
+  
+  userRequest.then(res => {
+    if(!res.data.code) {
+      setOptions(res.data.data);
+    }
+  }).catch(error => {
+    axios.isCancel(error)
+    setOptions([]);
+    // setLoading(false)
+  });
+
+  return () => {
+    currentRequest.cancel()
+  }
+}, [keyword]);
 
   //destructure the props
   const { city, airport } = props.search
 
-  const label = city && airport ? 'City and Airports' : city ? 'City' : airport ? 'Airports' : ''
+  // const label = city && airport ? 'City and Airports' : city ? 'City' : airport ? 'Airports' : ''
+  const label = 'Departure City/Airport';
+  const labelAr = 'Arrival City/Airport';
+
 
   return (
     <>
-      <form
-        id=''
-        style={{ width: 300, marginBottom: '1rem'}}
+      <Autocomplete
+        
+        style={{ width: 300, marginBottom: '1rem', marginLeft: '3rem'}}
+        className="bg-white text-white"
         open={open}
         onOpen={() => {
-          setOpen(false);
+          setOpen(true);
         }}
         onClose={() => {
           setOpen(false);
@@ -44,7 +65,7 @@ const SearchAutocomplete = (props) => {
         getOptionsSelected={(option, value) => option.name === value.name && option.type === value.type}
         onChange={(e, value) => {
           if(value && value.name) {
-            props.setSearch((p) => ({...p, keyword: 'a', page: 0 }))
+            props.setSearch((p) => ({...p, keyword: value.name, page: 0 }))
             setSearch(value.name)
             return;
           }
@@ -59,9 +80,10 @@ const SearchAutocomplete = (props) => {
         loading={loading}
         renderInput={params => {
           return (
-            <div 
-            label={label}
+            <TextField 
+            label={props.arrival ? labelAr : label}
             fullWidth
+            className='text-whit border-white'
             onChange={e => {
               e.preventDefault();
               setSearch(e.target.value);
@@ -82,12 +104,12 @@ const SearchAutocomplete = (props) => {
                 </React.Fragment>
               )
             }}
-            >
-            </div>
+            />
+            
           );
         }}
-      >
-      </form>
+      />
+      
     </>
   )
 
@@ -96,3 +118,5 @@ const SearchAutocomplete = (props) => {
 }
 
 export default SearchAutocomplete;
+
+

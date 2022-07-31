@@ -16,8 +16,9 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite })=> {
     });
   };
 
-  
+  const [favUpdater, setFavUpdater] = useState(0)
   const handleFavorite = (id, favorite) => {
+    setFavUpdater(favUpdater + 1)
     console.log('trip.favorite =',favorite)
     if(favorite === true) {
       //send axios request with favorite = false
@@ -26,14 +27,14 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite })=> {
         updateFavorite(res.data._id)
       })
 
-    }
-    if(favorite === false) {
+    }else { 
       //send axios request with favorite = true
       axios.put(`http://localhost:3020/trips/${id}`, {favorite: true})
       .then(res => {
         updateFavorite(res.data._id)
       })
     }
+    setFavUpdater(favUpdater + 1);
   }
   
  

@@ -12,10 +12,12 @@ import NavTest from './components/NavTest';
 import IndividualTripView from './pages/IndividualTripView'
 import UserTrips from './pages/UserTrips';
 import FavoriteTrips from './components/FavoriteTrips';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+
+// import Heart from "../../src/images/icons/hearts/heart.jpg";
+
 
 function App() {
-
-  
 
 const [trips, setTrips] = useState([])
 
@@ -28,31 +30,31 @@ const [user, setUser] = useState()
 function saveUser() {
   const userToken = localStorage.getItem('token');
   const userObject = JSON.parse(atob(userToken.split('.')[1])).user;
+  console.log(userObject)
   setUser(userObject)
 
 }
 
+function checkToken() {
+  const userToken = localStorage.getItem('token')
+  if(userToken !== null) {
+  const userObject = JSON.parse(atob(userToken.split('.')[1])).user;
+  setUser(userObject);
+  }
+}
 
 
 useEffect(()=>{
   fetch('http://localhost:3020/trips')
   .then(res => res.json())
   .then(trips=> setTrips(trips))
+  checkToken()
 }, [])
 
 console.log(trips)
 
 
-useEffect(()=>{
-  const fetchFlightData = async () => {
-    fetch('https://priceline-com-provider.p.rapidapi.com/v1/flights/search?itinerary_type=ONE_WAY&class_type=ECO&location_arrival=NYC&date_departure=2022-11-15&location_departure=MOW&sort_order=PRICE&number_of_stops=1&price_max=20000&number_of_passengers=1&duration_max=2051&price_min=100&date_departure_return=2022-11-16')
-    .then(res => res.json())
-    .then(res => console.log(res))
-	  .catch(err => console.error(err));
-  }
 
-  
-})
 
 //updates the trips array after the user deletes a trip and the db is updated
 const updateTripsState = (id) => {
@@ -62,7 +64,8 @@ const updateTripsState = (id) => {
 //updates the trip.favorite after the user clicks on favorite and the db is updated
 const updateFavorite = (id) => {
   const newState = trips.map(trip => {
-    if(trip === id){
+    if(trip._id === id){
+      console.log('before update',trip.favorite)
       return {...trip, favorite: !trip.favorite}
     }
     return trip
@@ -73,19 +76,23 @@ const updateFavorite = (id) => {
 
 
 
+
+
   return (
+
     <div className= "mainBg">
+  
       {/* <Nav /> */}
-      <NavTest/>
+      <NavTest className="z-auto"/>
       <Routes>
-        <Route path='/' element={<Home />}/>
+        <Route path='/' element={<Home UserTrips= {trips}/>}/>
         <Route path='/usertrips' element={<UserTrips alltrips={trips} updateState={updateTripsState} updateFavorite={updateFavorite}/>} />
         <Route path='/login' element={<Login saveUser={saveUser}/>} />
-        <Route path='/newtrip' element={<NewTrip />} />
+        <Route path='/newtrip' element={<NewTrip dateAdapter={AdapterMoment} />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView/> } />
-        <Route path='/favorites' element={<FavoriteTrips />} />
+        <Route path='/favorites' element={<FavoriteTrips UserTrips={trips}/>} />
       </Routes>
     </div>
   );

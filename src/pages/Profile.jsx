@@ -80,12 +80,12 @@ const Profile = ({ setUser, user }) => {
                 Update
               </button>
               <button
-                className="bg-gray-900 text-red-600 rounded"
+                className="bg-gray-900 text-red-600 rounded p-2"
                 onClick={() => {
                   showUpdateForm(false);
                 }}
               >
-                Close
+                X
               </button>
             </div>
           </form>

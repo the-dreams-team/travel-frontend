@@ -1,4 +1,4 @@
-
+/* 
 .trips{
   display: flex;
   justify-content: center;
@@ -11,25 +11,25 @@
 
 
 
-}
+} */
 /* .dates{
   display: flex;
   justify-content: center;
   align-items: center;
 } */
-.calender{
+/* .calender{
   display: flex;
   justify-content: center;
   align-items: center;
   
-}
-
+} */
+/* 
 .containerCal{
   width: 240px;
   height: 200px;
   background-color: darkblue;
   color: white;
-}
+} */
 
 
 .form1{
@@ -42,6 +42,12 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.imageBack2{
+  background-image: url(../../travel-frontend/src/images/travel-bg2.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 /* .newForm{
   max-width: 60%;

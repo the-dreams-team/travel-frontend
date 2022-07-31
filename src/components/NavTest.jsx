@@ -44,8 +44,8 @@ export default function NavTest() {
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://imgur.com/a/KeqOzFT"
-                    alt="Workflow"
+                    src = {mainlogo}
+                    alt="logo"
                   />
                 </div>
                 <div className="hidden sm:block sm:ml-6">
@@ -79,14 +79,14 @@ export default function NavTest() {
 
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="ml-3 relative">
+                <Menu as="div" className="ml-3 relative z-10">
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
                         src={profilePic}
-                        alt=""
+                        alt="sun logo"
                       />
                     </Menu.Button>
                   </div>
