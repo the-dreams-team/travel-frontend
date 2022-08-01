@@ -3,17 +3,17 @@ import TextField from '@mui/material/TextField'
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers';
+import moment from 'moment';
 
 
-
-const DepartureCal = ({departure, setFormData, formData, departRef}) => {
+const DepartureCal = ({departure, setFormData, formData}) => {
   const [value, setValue] = useState(null)
   const depLabel = 'Departure Date'
   const returnLabel = 'Return Date'
   
 const saveDepDate = (newValue) => {
-  // setFormData({...formData, departureDate: newValue._d})
- departRef.current = newValue._d
+   setFormData({...formData, departureDate: moment(newValue._d).format('YYYY-MM-DD')})
+
 }
 
   
