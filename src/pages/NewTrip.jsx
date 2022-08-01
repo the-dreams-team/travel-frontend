@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
@@ -32,8 +32,6 @@ const NewTrip = ({ addTrip, dateAdapter }) => {
 
   const [formData, setFormData] = useState(initialState);
 
-  const returnRef = useRef();
-  const departRef = useRef();
 
   //handle change
   const handleChange = (e) => {
@@ -99,8 +97,8 @@ const NewTrip = ({ addTrip, dateAdapter }) => {
           <div className="  flex items-center content-center dates mt-2">
             
           <div className="bg-white p-1.5 ">
-             <DepartureCal  departure={departure}  setFormData = {setFormData} formData = {formData} departRef = {departRef} />
-             <ReturnCal   setFormData = {setFormData} formData = {formData} returnRef = {returnRef} />
+             <DepartureCal  departure={departure}  setFormData = {setFormData} formData = {formData} />
+             <ReturnCal   setFormData = {setFormData} formData = {formData} />
              
             </div>
             
