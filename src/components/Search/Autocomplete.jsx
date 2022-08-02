@@ -29,7 +29,15 @@ const SearchAutocomplete = (props) => {
   userRequest.then(res => {
     if(!res.data.code) {
       setOptions(res.data.data);
+      if(props.arrival){
+      props.setFormData({...props.formData, arrivalCity: res.data.data[res.data.data.length-1].iataCode})
+      } else {
+        props.setFormData({...props.formData, departureCity: res.data.data[res.data.data.length-1].iataCode})
+      }
+      
     }
+    
+  
   }).catch(error => {
     axios.isCancel(error)
     setOptions([]);
@@ -62,8 +70,7 @@ const SearchAutocomplete = (props) => {
         onClose={() => {
           setOpen(false);
         }}
-        getOptionsSelected={(option, value) => option.name === value.name && option.type === value.type}
-        onChange={(e, value) => {
+        onChange={(e, value) => { 
           if(value && value.name) {
             props.setSearch((p) => ({...p, keyword: value.name, page: 0 }))
             setSearch(value.name)
@@ -95,14 +102,6 @@ const SearchAutocomplete = (props) => {
             }}
             InputProps={{
               ...params.InputProps,
-              endAdornment: (
-                <React.Fragment>
-                  {loading ? (
-                    <span>Loading...</span>
-                  ) : null}
-                  {params.InputProps.endAdornment}
-                </React.Fragment>
-              )
             }}
             />
             

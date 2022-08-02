@@ -54,8 +54,6 @@ useEffect(()=>{
 console.log(trips)
 
 
-
-
 //updates the trips array after the user deletes a trip and the db is updated
 const updateTripsState = (id) => {
   setTrips(trips.filter(trips => trips._id !== id))
@@ -73,11 +71,6 @@ const updateFavorite = (id) => {
   setTrips(newState)
 }
 
-
-
-
-
-
   return (
 
     <div className= "mainBg">
@@ -85,14 +78,14 @@ const updateFavorite = (id) => {
       {/* <Nav /> */}
       <NavTest className="z-auto"/>
       <Routes>
-        <Route path='/' element={<Home UserTrips= {trips}/>}/>
+        <Route path='/' element={<Home UserTrips= {trips} user={user} />}/>
         <Route path='/usertrips' element={<UserTrips alltrips={trips} updateState={updateTripsState} updateFavorite={updateFavorite}/>} />
         <Route path='/login' element={<Login saveUser={saveUser}/>} />
         <Route path='/newtrip' element={<NewTrip dateAdapter={AdapterMoment} />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView/> } />
-        <Route path='/favorites' element={<FavoriteTrips UserTrips={trips}/>} />
+        {/* <Route path='/favorites' element={<FavoriteTrips UserTrips={trips}/>} /> */}
       </Routes>
     </div>
   );

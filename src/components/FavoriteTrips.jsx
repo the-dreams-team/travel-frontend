@@ -7,11 +7,11 @@ import HeartP from "../../src/images/icons/hearts/hearts.png";
 const FavoriteTrips = ({ UserTrips }) => {
   return (
     // Parent divs
-    <div className=" bg-white bg-opacity-80 w-10/12  h-64">
+    <div className=" bg-white bg-opacity-80 w-10/12 flex justify-center  h-fit">
     <div className="flex flex-wrap">
      
      {/* trips and icon   */}
-     <div>   
+     <div className="w-full flex justify-center">   
         <img
           className="block lg:hidden h-8 w-auto"
           src={HeartP}
@@ -28,10 +28,10 @@ const FavoriteTrips = ({ UserTrips }) => {
         return (
           <>
             {trip?.favorite && (
-              <>
-                <div className="w-1/3 flex wrap items-center justify-center">
-                  <div className="bg-blue-600 mt-4   w-4/4 h-full   ">
-                    <div className="tripTitle font-medium items-center">
+              <> 
+                <div key={trip._id} className="w-1/2 flex wrap items-center justify-center mb-1 ">
+                  <div className="bg-red-500 mt-4   w-full h-full rounded-md m-2  text-center p-1 ">
+                    <div className="tripTitle font-medium items-center bg-yellow-600 rounded-md">
                       {trip?.tripName}
                     </div>
                     <div className="cities font-medium">

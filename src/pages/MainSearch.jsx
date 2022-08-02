@@ -5,16 +5,17 @@ import { getAmadeusData } from "../api/api"
 import Checkboxes from '../components/Search/Checkboxes'
 
 
-const MainSearch = () => {
+const MainSearch = ({formData, setFormData, arrival}) => {
 
     // the state we have itself + we are then able to change state as needed
     const [search, setSearch] = useState({ keyword:'a', city: true, airport: true, page: 0 });
 
+   
+
     const [dateSource, setDataSource] = useState({ meta: { count: 0 }, data: [] });
 
     // const [loading, setLoading] = useState(false)
-
-
+    
 
     useEffect(() => {
 
@@ -30,7 +31,9 @@ const MainSearch = () => {
 
             //being able to take our data
             setDataSource(res.data)
+            
         }
+       // setFormData({...formData, departureCity: dateSource.data[0].iataCode})
     //    setLoading(false)
     }).catch(error => {
        axios.isCancel(error)
@@ -46,13 +49,11 @@ const MainSearch = () => {
 
     };
 }, [search]);
-    const arrival = true;
 
      return (
          <div className="container">
              <div className='userSearch'>
-                <SearchAutocomplete search={search} setSearch={setSearch}/>
-                <SearchAutocomplete search={search} setSearch={setSearch} arrival={arrival} />
+                <SearchAutocomplete search={search} formData={formData} setFormData={setFormData} setSearch={setSearch} arrival={arrival} />
                 {/* <Checkboxes search={search} setSearch={setSearch}/>              */}
             </div>
         </div>

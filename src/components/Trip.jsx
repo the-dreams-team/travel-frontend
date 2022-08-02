@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import FavoriteTrips from "./FavoriteTrips";
+import { TbHeartBroken } from "react-icons/tb";
+
 const Trip = ({ alltrips, updateState, setTrips, updateFavorite })=> {
 
 
@@ -36,12 +38,6 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite })=> {
     }
     setFavUpdater(favUpdater + 1);
   }
-  
- 
-
-  
-  
-  
   
   return (
     <div>
@@ -97,7 +93,7 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite })=> {
                       text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       >                
-                    {trip.favorite ? <span><u> ♥️ </u></span> : <span>♥️</span> }
+                    {trip.favorite ? <span> ♥️ </span> : <span><TbHeartBroken/></span> }
                       </button>
                     </div>
 
@@ -123,9 +119,9 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite })=> {
         );
       }
     )}
-    <div>
+    {/* <div>
       <h1> <FavoriteTrips  allTrips={alltrips} updateFavorite/> </h1>
- {updateFavorite}    </div>
+ {updateFavorite}    </div> */}
     </div>
       )
     }
