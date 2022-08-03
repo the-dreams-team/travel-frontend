@@ -30,15 +30,15 @@ const Profile = ({ setUser, user }) => {
   return (
     // <div class="flex-col justify-center items-center mx-auto bg-opacity-50 bg-gray-200 h-screen py-20 px-4 max-w-7xl spm:px-6  w-3/4" >
     <div className="h-screen">
-      <div className="bg-gray-600 w-3/4 flex-col justify-center items-center mx-auto">
-        <h3 className="mx-4 my-4 font-sans text-lg">
-          <u>Profile Page</u>
+      <div className="bg-white  w-3/4 flex-col justify-center items-center mx-auto rounded p-1">
+        <h3 className=" my-4 font-sans text-lg text-center bg-gray-500 rounded p-2 w-1/3 item-center center">
+          <u className="text-white">Profile Page</u>
         </h3>
 
         <p className="mx-4 my-4 font-sans">Name: {user?.name}</p>
         <p className="mx-4 my-4 font-sans">Email: {user?.email}</p>
 
-        <div className="bg-gray-900 py-1 px-1 rounded">
+        <div className=" py-1 px-1 rounded item-center text-center">
           <button
             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onClick={() => {
@@ -75,12 +75,12 @@ const Profile = ({ setUser, user }) => {
               />
             </label>
             <br />
-            <div className="flex justify-between my-8">
-              <button className="bg-gray-900 text-white rounded" type="submit">
+            <div className="flex justify-between content-center item-center text-center my-8">
+              <button className="bg-gray-900 text-white  item-center text-center rounded" type="submit">
                 Update
               </button>
               <button
-                className="bg-gray-900 text-red-600 rounded p-2"
+                className="bg-gray-900 text-red-600 rounded p-2 items-center text-center"
                 onClick={() => {
                   showUpdateForm(false);
                 }}

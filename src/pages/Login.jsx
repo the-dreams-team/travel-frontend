@@ -28,8 +28,8 @@ const Login = ({saveUser}) => {
     axios.post('http://localhost:3020/login', formData)
     .then(res => {
       console.log('this is the response from the server ->', res.data);
-      localStorage.removeItem('token');
-      localStorage.setItem('token', res.data.token);
+      localStorage.removeItem('traveltoken');
+      localStorage.setItem('traveltoken', res.data.token);
       saveUser();
       navigate('/');
     })

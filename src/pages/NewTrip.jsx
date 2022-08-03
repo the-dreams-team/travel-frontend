@@ -6,6 +6,7 @@ import MainSearch from "./MainSearch";
 import DepartureCal from '../components/DepartureCal';
 import ReturnCal from '../components/ReturnCal';
 
+
 const NewTrip = ({ dateAdapter }) => {
   const departure = true
   const StyledForm = styled.div`
@@ -18,6 +19,8 @@ const NewTrip = ({ dateAdapter }) => {
     returnDate: "",
     departureCity: "",
     arrivalCity: "",
+    departureIata: "",
+    arrivalIata: "",
     ticketPrice: "",
     numberPassengers: "",
     airlineType: "",
@@ -93,10 +96,10 @@ const NewTrip = ({ dateAdapter }) => {
                           
                           <div className="   ">
                             <div className="scale-75">
-                            <MainSearch setFormData={setFormData} formData={formData} />
+                            {/* <MainSearch setFormData={setFormData} formData={formData} /> */}
                             </div>
                             <div className="scale-75 ">
-                            <MainSearch setFormData={setFormData} formData={formData} arrival={true}/>
+                            {/* <MainSearch setFormData={setFormData} formData={formData} arrival={true}/> */}
                             </div>
                           </div>
                         

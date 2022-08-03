@@ -38,14 +38,21 @@
   justify-content: center;
 }
 .mainBg{
-  background-image: url(../../travel-frontend/src/images/tripBG.jpeg);
+  background-image: url(../../travel-frontend/src/images/backgrounds/tripBG.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
 }
 .imageBack2{
-  background-image: url(../../travel-frontend/src/images/travel-bg2.jpeg);
+  background-image: url(../../travel-frontend/src/images/backgrounds/travel-bg2.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+.userTripsBG{
+  background-image: url(../../travel-frontend/src/images/backgrounds/profile4.jpg);
+  background-repeat: none;
+  background-size: cover;
+  background-position: center;
+
 }
 
 

@@ -1,6 +1,7 @@
 import './App.css';
+import axios from 'axios';
 import {useState, useEffect} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './components/Nav';
 import Home from './pages/Home';
@@ -13,11 +14,14 @@ import IndividualTripView from './pages/IndividualTripView'
 import UserTrips from './pages/UserTrips';
 import FavoriteTrips from './components/FavoriteTrips';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import FlightPage from './pages/FlightPage'
 
 // import Heart from "../../src/images/icons/hearts/heart.jpg";
 
 
 function App() {
+
+  const navigate = useNavigate()
 
 const [trips, setTrips] = useState([])
 
@@ -28,30 +32,53 @@ const [trips, setTrips] = useState([])
 const [user, setUser] = useState()
 
 function saveUser() {
-  const userToken = localStorage.getItem('token');
+  const userToken = localStorage.getItem('traveltoken');
   const userObject = JSON.parse(atob(userToken.split('.')[1])).user;
   console.log(userObject)
   setUser(userObject)
 
 }
 
-function checkToken() {
-  const userToken = localStorage.getItem('token')
-  if(userToken !== null) {
-  const userObject = JSON.parse(atob(userToken.split('.')[1])).user;
-  setUser(userObject);
+  function checkToken() {
+    const userToken = localStorage.getItem('traveltoken')
+    if(userToken !== null) {
+    const userObject = JSON.parse(atob(userToken.split('.')[1])).user;
+    setUser(userObject);
+    }
+    getTrips()
   }
-}
+  
+  function getTrips() {
+    const token = localStorage.getItem('traveltoken');
+    const instance = axios.create({
+      headers: {
+        'Authorization': token
+      }
+    })
+
+      instance.get('http://localhost:3020/trips')
+      .then(res => {
+        if(res.data.msg ==='you need to log in'){
+          
+        } else {
+          setTrips(res.data)
+        }
+      })
+  }
+
 
 
 useEffect(()=>{
-  fetch('http://localhost:3020/trips')
-  .then(res => res.json())
-  .then(trips=> setTrips(trips))
-  checkToken()
+    console.log('useeffect ran')
+    checkToken()
+    
 }, [])
 
-console.log(trips)
+
+
+
+
+trips && console.log(trips)
 
 
 //updates the trips array after the user deletes a trip and the db is updated
@@ -60,16 +87,16 @@ const updateTripsState = (id) => {
 }
 
 //updates the trip.favorite after the user clicks on favorite and the db is updated
-const updateFavorite = (id) => {
-  const newState = trips.map(trip => {
-    if(trip._id === id){
-      console.log('before update',trip.favorite)
-      return {...trip, favorite: !trip.favorite}
-    }
-    return trip
-  })
-  setTrips(newState)
-}
+  const updateFavorite = (id) => {
+    const newState = trips.map(trip => {
+      if(trip._id === id){
+        console.log('before update',trip.favorite)
+        return {...trip, favorite: !trip.favorite}
+      }
+      return trip
+    })
+    setTrips(newState)
+  }
 
   return (
 
@@ -85,10 +112,10 @@ const updateFavorite = (id) => {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView/> } />
-        {/* <Route path='/favorites' element={<FavoriteTrips UserTrips={trips}/>} /> */}
+        <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} />} />
+      
       </Routes>
     </div>
   );
 }
-
 export default App;

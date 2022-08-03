@@ -7,7 +7,7 @@ import HeartP from "../../src/images/icons/hearts/hearts.png";
 const FavoriteTrips = ({ UserTrips }) => {
   return (
     // Parent divs
-    <div className=" bg-white bg-opacity-80 w-10/12 flex justify-center  h-fit">
+    <div className=" bg-white bg-opacity-80 w-10/12 flex justify-center  h-fit p-1 rounded-md">
     <div className="flex flex-wrap">
      
      {/* trips and icon   */}

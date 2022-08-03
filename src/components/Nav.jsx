@@ -18,8 +18,6 @@ const NavbarContainer = styled.nav`
     }
   `
 
-
-
 const Navbar = ({user , setUser}) => {
     const navigate = useNavigate()
 
