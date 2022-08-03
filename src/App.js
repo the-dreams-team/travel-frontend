@@ -113,6 +113,7 @@ const updateTripsState = (id) => {
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView/> } />
         <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} />} />
+        
       
       </Routes>
     </div>
