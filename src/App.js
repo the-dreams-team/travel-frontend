@@ -33,6 +33,7 @@ function App() {
   const [user, setUser] = useState()
 
   const [ticketFinder, setTicketFinder] = useState()
+  const [flightToken, setFlightToken] = useState()
 
   function saveUser() {
     const userToken = localStorage.getItem('traveltoken');
@@ -80,7 +81,7 @@ function App() {
 
 
 
-trips && console.log(trips)
+//trips && console.log(trips)
 
 
 //updates the trips array after the user deletes a trip and the db is updated
@@ -118,11 +119,11 @@ const updateTripsState = (id) => {
         <Route path='/' element={<Home UserTrips= {trips} user={user} />}/>
         <Route path='/usertrips' element={<UserTrips alltrips={trips} updateState={updateTripsState} updateFavorite={updateFavorite}/>} />
         <Route path='/login' element={<Login saveUser={saveUser}/>} />
-        <Route path='/newtrip' element={<NewTrip dateAdapter={AdapterMoment} ticketFinder={ticketFinder} setTicketFinder={setTicketFinder} />} />
+        <Route path='/newtrip' element={<NewTrip dateAdapter={AdapterMoment} ticketFinder={ticketFinder} setTicketFinder={setTicketFinder} setFlightToken={setFlightToken} />} />
         <Route path='/signup' element={<SignUp saveUser = {saveUser} />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView setTrips={setTrips} trips={trips} /> } />
-        <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} ticketFinder={ticketFinder} setTicketFinder={setTicketFinder} />} />
+        <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} ticketFinder={ticketFinder} flightToken={flightToken} />} />
         
       
       </Routes>
