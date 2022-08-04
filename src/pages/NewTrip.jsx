@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import MainSearch from "./MainSearch";
 import DepartureCal from '../components/DepartureCal';
 import ReturnCal from '../components/ReturnCal';
+import { useFlightToken } from "../api/useFlightToken";
 
 
-const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder }) => {
+const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken }) => {
   const departure = true
 
   const initialState = {
@@ -27,8 +28,10 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
+  
+  setFlightToken(useFlightToken())
 
-
+  
   //handle change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -42,6 +45,8 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder }) => {
       'Authorization': token
     }
   })
+
+
 
   //handle submit
   const handleSubmit = (e) => {
