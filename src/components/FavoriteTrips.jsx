@@ -13,13 +13,18 @@ const FavoriteTrips = ({ UserTrips }) => {
      {/* trips and icon   */}
      <div className="w-full flex justify-center">   
         <img
-          className="block lg:hidden h-8 w-auto"
+          className="block h-8 w-auto"
           src={HeartP}
           alt="logo"
         ></img>
-      <h2 className="text-3xl  font-extrabold tracking-tight text-gray-900  sm:text-4xl">
-        <span className="block"> Trips</span>
-      </h2>
+        <h2 className="text-3xl  font-extrabold tracking-tight text-gray-900  sm:text-4xl">
+          <span className="block"> Trips</span>
+        </h2>
+        <img
+          className="block h-8 w-auto"
+          src={HeartP}
+          alt="logo"
+        ></img>
       </div>
 
 

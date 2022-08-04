@@ -1,10 +1,10 @@
 import React from 'react';
 import Flights from '../components/Flights';
 
-const flightPages = ({user}) => {
+const flightPages = ({user, ticketFinder}) => {
   return (
     <div>
-      <Flights user = {user}/>
+      <Flights user={user} ticketFinder={ticketFinder} />
     </div>
   )
 }

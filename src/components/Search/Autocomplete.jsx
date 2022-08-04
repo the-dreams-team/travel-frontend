@@ -30,9 +30,9 @@ const SearchAutocomplete = (props) => {
     if(!res.data.code) {
       setOptions(res.data.data);
       if(props.arrival){
-      props.setFormData({...props.formData, arrivalIata: res.data.data[res.data.data.length-1].iataCode})
+      props.setFormData({...props.formData, arrivalIata: res.data.data[res.data.data.length-1].iataCode, arrivalCity: res.data.data[res.data.data.length-1].address.cityName})
       } else {
-        props.setFormData({...props.formData, departureIata: res.data.data[res.data.data.length-1].iataCode})
+        props.setFormData({...props.formData, departureIata: res.data.data[res.data.data.length-1].iataCode, departureCity: res.data.data[res.data.data.length-1].address.cityName})
       }
       
     }

@@ -1,6 +1,30 @@
 import React from 'react'
+import axios from 'axios'
+import {useNavigate} from "react-router-dom"
+import Login from './Login'
 
-const SignUp = () => {
+
+const SignUp = ({saveUser}) => {
+
+const [formData, setFormData] = React.useState()
+
+  const handleChange= (e) => {
+    setFormData({...formData, [e.target.id] : e.target.value})
+  }
+
+  const navigate = useNavigate()  
+
+  const handleSubmit = (e)=> {
+    e.preventDefault()
+    axios.post('http://localhost:3020/signup', formData)
+    .then(res => {
+      console.log(res.data)
+      localStorage.removeItem('traveltoken');
+      localStorage.setItem('traveltoken', res.data.token);
+      saveUser()
+      navigate('/')
+    })
+  }
 
   // need to add the axios post to /signup with formdata
   //need to add in handling for the jwt returned
@@ -9,9 +33,9 @@ const SignUp = () => {
   return (
     <div class="form1 mainBg">
     <div class="w-full max-w-xs  items-center py-12">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
-          <label
+          <label htmlFor= "email" 
             class="block text-gray-700 text-sm font-bold mb-2"
             for="email"
           >
@@ -22,6 +46,7 @@ const SignUp = () => {
             id="username"
             type="text"
             placeholder="Username"
+            onChange={handleChange}
           />
         </div>
         <div class="mb-6">
@@ -36,13 +61,14 @@ const SignUp = () => {
             id="password"
             type="password"
             placeholder="*********"
+            onChange={handleChange}
           />
           <p class="text-red-500 text-xs italic">Please create a password.</p>
         </div>
         <div class="flex items-center justify-between">
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
+            type="submit"
           >
             Signup
           </button>

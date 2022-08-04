@@ -1,20 +1,12 @@
 import React, { useState, useEffect} from 'react'
 // import React, { useEffect } from 'react'
 import axios from 'axios'
-import styled from 'styled-components'
-import Calendar from 'react-calendar'
+// import styled from 'styled-components'
+
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router'
 
 //add the styled form like before (placeholder for now)
-const StyledForm = styled.div`
-margin: 20px;
-h1 {
-  background-color: blue;
-  
-}
-
-`
 //to edit our current trip
 const EditTrip = ({ setTrips }) => {
 
@@ -67,9 +59,8 @@ useEffect(() => {
 
 return (
 
-<StyledForm onSubmit={handleSubmit}>
+<form onSubmit={handleSubmit}>
       
-
 <div>
   <section>
     <h1> Edit Current Trip </h1>
@@ -85,80 +76,7 @@ return (
     </section>
   </div>
 
-  {/* //for our departure date */}
-
-  <div>
-       <label htmlFor='date'> Departure Date </label>
-       <input id='date' name='date' type='text' onChange = {handleChange} />   
-  </div>
-
-  {/* // for our arrival date */}
-       {/* departure calendar */}
-       <div class="containerCal">
-  <Calendar />
-  </div>
-  {/* return calendar */}
-  <div class="containerCal">
-  <Calendar />
-  </div>
-
-  <div> 
-      <label htmlFor='dateArrival'> Arrival Date </label>
-      <input id='dateArrival' name='dateArrival' type='text' onChange = {handleChange} />  
-  </div>
-
-    {/* //departure city  */}
-
-  <div>
-     <label htmlFor='departureCity'> Departure City </label>
-     <input id='departureCity' name='departureCity' type='text' onChange = {handleChange} />  
-  </div>
-
-      {/* //arrival city  */}
-
-  <div>
-    <label htmlFor='arrivalCity'> Arrival City </label>
-    <input id='arrivalCity' name='arrivalCity' type='text' onChange = {handleChange} />  
-  </div>
-
-
-        {/* //for our ticket price */}
-
-  <div>
-    <label htmlFor='ticketPrice'> Ticket Price </label>
-    <input id='ticketPrice' name='ticketPrice' type='text' onChange = {handleChange} />  
-  </div>
-
-        {/* //number of passengers */}
-
-  <div>
-    <label htmlFor='numberPasssengers'> Number of Passengers </label>
-    <input id='numberPasssengers' name='numberPasssengers' type='text' onChange = {handleChange} />  
-  </div>
-
-        {/* //name of airline */}
-
-
-  <div>
-    <label htmlFor='airlineType'> Airline Type </label>
-    <input id='airlineType' name='airlineType' type='text' onChange = {handleChange} />  
-  </div>
-
-      {/* //flight id */}
-
-  <div>
-    <label htmlFor='flightId'> Flight # </label>
-    <input id='flightId' name='flightId' type='text' onChange = {handleChange} />  
-  </div>
-
-
-
-  <input type='submit' value='Edit Current Trip' />
-
-
-  
-
-</StyledForm>
+</form>
 
 )}
 

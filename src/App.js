@@ -7,6 +7,7 @@ import Nav from './components/Nav';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NewTrip from './pages/NewTrip';
+import EditTrip from './pages/EditTrip';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import NavTest from './components/NavTest';
@@ -23,21 +24,22 @@ function App() {
 
   const navigate = useNavigate()
 
-const [trips, setTrips] = useState([])
+  const [trips, setTrips] = useState([])
 
-// this users state will be removed for production 
-//const [users, setUsers] = useState()
+  // this users state will be removed for production 
+  //const [users, setUsers] = useState()
 
-// this will be the logged in user 
-const [user, setUser] = useState()
+  // this will be the logged in user 
+  const [user, setUser] = useState()
 
-function saveUser() {
-  const userToken = localStorage.getItem('traveltoken');
-  const userObject = JSON.parse(atob(userToken.split('.')[1])).user;
-  console.log(userObject)
-  setUser(userObject)
+  const [ticketFinder, setTicketFinder] = useState()
 
-}
+  function saveUser() {
+    const userToken = localStorage.getItem('traveltoken');
+    const userObject = JSON.parse(atob(userToken.split('.')[1])).user;
+    console.log(userObject)
+    setUser(userObject)
+  }
 
   function checkToken() {
     const userToken = localStorage.getItem('traveltoken')
@@ -68,11 +70,11 @@ function saveUser() {
 
 
 
-useEffect(()=>{
-    console.log('useeffect ran')
-    checkToken()
-    
-}, [])
+  useEffect(()=>{
+      console.log('useeffect ran')
+      checkToken()
+      
+  }, [])
 
 
 
@@ -98,6 +100,14 @@ const updateTripsState = (id) => {
     setTrips(newState)
   }
 
+ const editTrip = (id) => {
+
+   setTrips(trips.filter(trips._id !== id))
+
+ }
+
+
+
   return (
 
     <div className= "mainBg">
@@ -108,11 +118,11 @@ const updateTripsState = (id) => {
         <Route path='/' element={<Home UserTrips= {trips} user={user} />}/>
         <Route path='/usertrips' element={<UserTrips alltrips={trips} updateState={updateTripsState} updateFavorite={updateFavorite}/>} />
         <Route path='/login' element={<Login saveUser={saveUser}/>} />
-        <Route path='/newtrip' element={<NewTrip dateAdapter={AdapterMoment} />} />
-        <Route path='/signup' element={<SignUp />} />
+        <Route path='/newtrip' element={<NewTrip dateAdapter={AdapterMoment} ticketFinder={ticketFinder} setTicketFinder={setTicketFinder} />} />
+        <Route path='/signup' element={<SignUp saveUser = {saveUser} />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
-        <Route path='/trip/:id' element={<IndividualTripView/> } />
-        <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} />} />
+        <Route path='/trip/:id' element={<IndividualTripView setTrips={setTrips} trips={trips} /> } />
+        <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} ticketFinder={ticketFinder} setTicketFinder={setTicketFinder} />} />
         
       
       </Routes>

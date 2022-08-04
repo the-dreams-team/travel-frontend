@@ -1,17 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import styled from "styled-components";
 import MainSearch from "./MainSearch";
 import DepartureCal from '../components/DepartureCal';
 import ReturnCal from '../components/ReturnCal';
 
 
-const NewTrip = ({ dateAdapter }) => {
+const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder }) => {
   const departure = true
-  const StyledForm = styled.div`
-    margin: 20px;
-  `;
 
   const initialState = {
     tripName: "",
@@ -26,7 +22,7 @@ const NewTrip = ({ dateAdapter }) => {
     airlineType: "",
     flightId: "",
     favorite: false,
-  };
+  }
 
   const navigate = useNavigate();
 
@@ -39,14 +35,22 @@ const NewTrip = ({ dateAdapter }) => {
     
   };
 
+
+  const token = localStorage.getItem('traveltoken');
+  const createInstance = axios.create({
+    headers: {
+      'Authorization': token
+    }
+  })
+
   //handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData)
-    axios.post("http://localhost:3020/trips", formData).then((res) => {
+    createInstance.post("http://localhost:3020/trips", formData).then((res) => {
       setFormData(initialState);
-      
-      navigate("/");
+      setTicketFinder(res.data);
+      navigate("/trip/flights");
     });
   };
 
@@ -96,10 +100,10 @@ const NewTrip = ({ dateAdapter }) => {
                           
                           <div className="   ">
                             <div className="scale-75">
-                            {/* <MainSearch setFormData={setFormData} formData={formData} /> */}
+                            <MainSearch setFormData={setFormData} formData={formData} />
                             </div>
                             <div className="scale-75 ">
-                            {/* <MainSearch setFormData={setFormData} formData={formData} arrival={true}/> */}
+                            <MainSearch setFormData={setFormData} formData={formData} arrival={true}/>
                             </div>
                           </div>
                         

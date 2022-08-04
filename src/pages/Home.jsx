@@ -16,10 +16,10 @@ const Home = ({ UserTrips, user}) => {
     <div className="flex flex-wrap  gap-10 items-center justify-center  min-h-screen">
     
       <ExplainPage user={user} />
-      <div className="h-full w-full flex items-center justify-center ">
+        <div className="h-full w-full flex items-center justify-center ">
         
               <FavoriteTrips className="flex flex-wrap border-radius: 6px" UserTrips = {UserTrips}/>
-      </div>
+        </div>
     </div>
   );
 };
