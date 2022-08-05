@@ -4,6 +4,7 @@ import moment from 'moment';
 import { FaPlaneArrival }  from 'react-icons/fa'
 import { FaPlaneDeparture } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
+import qs from 'qs';
 
 const Flights = ({user, ticketFinder, flightToken}) => {
   
@@ -14,21 +15,76 @@ const Flights = ({user, ticketFinder, flightToken}) => {
   const [accessToken, setAccessToken] = useState();
   
   
-  
+  //creates the axios instance with the authorization token from amadeus
   const instance = axios.create({
     method: 'get',
   })
   instance.defaults.headers.common['Authorization'] = `Bearer ${flightToken}`
   
+
+  // adds the users inputed trip data into the url to find related flights
   const departIATA = ticketFinder.departureIata;
   const arrivalIATA = ticketFinder.arrivalIata;
   const departDate = ticketFinder.departureDate;
   const returnDate = ticketFinder.returnDate;
   const numAdults = ticketFinder.numberPassengers;
-    
   
+  // changes the users input into urlsearchparams so it is compatible with the amadeus api endpoint
+  
+  const tripInfo = {
+    "currencyCode": "USD",
+    "originDestinations": [
+      {
+        "id": "1",
+        "originLocationCode": `${departIATA}`,
+        "destinationLocationCode": `${arrivalIATA}`,
+        "originRadius": "100",
+        "destinationRadius": "100",
+        "departureDateTimeRange": {
+          "date": `${departDate}`,
+          "time": "02:00:00"
+        }
+      },
+      {
+        "id": "2",
+        "originLocationCode": `${arrivalIATA}`,
+        "destinationLocationCode": `${departIATA}`,
+        "originRadius": "100",
+        "destinationRadius": "100",
+        "departureDateTimeRange": {
+          "date": `${returnDate}`,
+          "time": "02:00:00"
+        }
+      }
+    ],
+    "travelers": [
+      {
+        "id": "1",
+        "travelerType": "ADULT"
+      }
+    ],
+    "sources": [
+      "GDS"
+    ],
+    "searchCriteria": {
+      "maxFlightOffers": 5,
+      "flightFilters": {
+        
+      }
+    }
+  }
+
+  const options = {
+    method: 'POST',
+    data: tripInfo,
+    url: 'https://test.api.amadeus.com/v2/shopping/flight-offers'
+  }
+
+
+
+  // this is requesting the flights specific to what the user inputed in the create new trip page
   const findFlights = () => {
-      instance(`https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${departIATA}&destinationLocationCode=${arrivalIATA}&departureDate=${departDate}&returnDate=${returnDate}&adults=${numAdults}&nonStop=false&currencyCode=USD&max=5`)
+      instance(`https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${departIATA}&destinationLocationCode=${arrivalIATA}&departureDate=${departDate}&returnDate=${returnDate}&adults=${numAdults}&nonStop=true&currencyCode=USD&max=5`)
       .then(res => {
         console.log(res.data)
         setFlights(res.data)
@@ -37,9 +93,26 @@ const Flights = ({user, ticketFinder, flightToken}) => {
     
   }
 
+
+  // this is requesting the flights specific to what the user inputed in the create new trip page
+  const findTickets2 = () => {
+
+    instance(options)
+    .then(res => {
+      console.log(res.data)
+      setFlights(res.data)
+      setIsLoading(false)
+    })
+
+
+
+  }
+
+
   useEffect(() => {
     setIsLoading(true)
-    findFlights()
+    //findFlights()
+    findTickets2()
     
   }, [])
 
@@ -54,7 +127,7 @@ const Flights = ({user, ticketFinder, flightToken}) => {
     
     saveInstance.put(`http://localhost:3020/trips/${ticketFinder._id}`, { flightObj: flightid}  )
     .then(res => console.log(res.data))
-    navigate('/usertrips')
+    navigate('/')
   }
 
 
@@ -72,14 +145,23 @@ const Flights = ({user, ticketFinder, flightToken}) => {
                 <p>{flight.itineraries[0].segments[0].departure.iataCode}</p>-<p>{flight.itineraries[1].segments[0].departure.iataCode}</p>
               </div>
               <h3>Total Price: 💰{flight.price.total}</h3><br/>
+              {/* depart flight */}
               <h2 className=  'flex px-6 py-2.5 bg-red-400 w-full text-white justify-center' >  <FaPlaneDeparture className='scale-150' /> </h2>
               <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 text-white' > Total Flight Time: {flight.itineraries[0].duration}</h3>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(flight.itineraries[0].segments[0].departure.at).format('HH:MM')}</h3><br/>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(flight.itineraries[0].segments[0].arrival.at).format('HH:MM')}</h3><br/>
+              {flight.itineraries[0].segments.length > 1 ? <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' >{flight.itineraries[0].segments[0].departure.iataCode} Depart Time: {moment(flight.itineraries[0].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' >{flight.itineraries[0].segments[0].arrival.iataCode} Arrival Time: {moment(flight.itineraries[0].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' >{flight.itineraries[0].segments[1].departure.iataCode} Depart Time: {moment(flight.itineraries[0].segments[1].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' >{flight.itineraries[0].segments[1].arrival.iataCode} Arrival Time: {moment(flight.itineraries[0].segments[1].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/></div> :  <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' >{flight.itineraries[0].segments[0].departure.iataCode} Depart Time: {moment(flight.itineraries[0].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' >{flight.itineraries[0].segments[0].arrival.iataCode} Arrival Time: {moment(flight.itineraries[0].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/></div> }
+              {/* return flight */}
               <h2 className = 'flex px-6 py-2.5 bg-red-400 text-white w-full justify-center mt-4 ' >  <FaPlaneArrival className='scale-150' />  </h2>
               <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white'> Total Flight Time: {flight.itineraries[1].duration}</h3><br/>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white'> Depart Time: {moment(flight.itineraries[1].segments[0].departure.at).format('HH:MM')}</h3><br/>
-              <h3 className ='inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>Arrival Time: {moment(flight.itineraries[1].segments[0].arrival.at).format('HH:MM')}</h3><br/>
+              {flight.itineraries[1].segments.length > 1 ? <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white'>{flight.itineraries[1].segments[0].departure.iataCode} Depart Time: {moment(flight.itineraries[1].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className ='inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>{flight.itineraries[1].segments[0].arrival.iataCode} Arrival Time: {moment(flight.itineraries[1].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white'>{flight.itineraries[1].segments[1].departure.iataCode} Depart Time: {moment(flight.itineraries[1].segments[1].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className ='inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>{flight.itineraries[1].segments[1].arrival.iataCode} Arrival Time: {moment(flight.itineraries[1].segments[1].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/></div> : <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white'>{flight.itineraries[1].segments[0].departure.iataCode} Depart Time: {moment(flight.itineraries[1].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className ='inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>{flight.itineraries[1].segments[0].arrival.iataCode} Arrival Time: {moment(flight.itineraries[1].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/></div> }
+       
               <div>
                 <button onClick={() => handleSave(flight) } className='m-2 inline-block px-7 py-2.5 bg-red-400 text-white font-large text-s leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out padding: 10px'>Select Flight</button>
               </div>
