@@ -65,11 +65,11 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
  
   return (
     <div className="bg-yellow imageBack2  bg-opacity-80 w-full align-middle items-center text-center   min-h-screen  bg-auto  ">
-      <div className="newForm flex items-center justify-center">
+      <div className="flex items-center justify-center">
         
         
         <form
-          className="w-11/12   bg-gray-700   newForm "
+          className="w-11/12   bg-gray-700"
           onSubmit={handleSubmit}
         >
                     <div className="bg-white">
@@ -86,10 +86,10 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
                     </div>
 
 
-
+                      
                       <div className="flex items-center justify-center w-full">
-                      <label className="text-indigo-500 m-4 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
-                          
+                        <label className="text-indigo-500 m-4 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
+                            
                           Trip Name 
                           </label>
                         <input
@@ -107,8 +107,8 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
                       </div>
                           {/* departure and return locations */}
                           
-                          <div className="   ">
-                            <div className="scale-75">
+                          <div className="flex flex-wrap justify-center w-full    ">
+                            <div className=" scale-75">
                             <MainSearch setFormData={setFormData} formData={formData} />
                             </div>
                             <div className="scale-75 ">
@@ -118,9 +118,9 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
                         
                           {/* //for our departure date */}
 
-            <div className="  flex items-center content-center dates mt-2">
+            <div className="  flex flex-wrap justify-center w-full dates mt-2">
             
-                <div className=" flex items-center content-center ">
+                <div className=" flex items-center content-center focus: ring-indigo-200 align-content: center">
                     <div className="scale-75 bg-white ">
                     <DepartureCal  departure={departure}  setFormData = {setFormData} formData = {formData} />
                     </div>
@@ -135,8 +135,8 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
           {/* //number of passengers */}
 
  
-            <div className="flex items-center">
-                <label className="text-indigo-500 m-4 text 1xl font-mono block mt-4 py-5 padding-top: 5px">
+            <div className="flex flex-wrap justify-center w-full">
+                <label className="text-indigo-500 m-4 text 1xl font-mono block mt-4  padding-top: 5px">
                 
                 Number of Passengers 
                 </label>
@@ -147,14 +147,14 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
                 required={true}
                 value={formData.numberPassengers}
                 onChange={handleChange}
-                className="  mt-2 m-2 w-1/3 shadow-sm text-center focus:ring-indigo-500 focus:border-indigo-500 block p-2 sm:text-sm border-gray-300 rounded-md"
-                placeholder="(Total # of Pass here)"  
+                className="   mt-1 m-1 w-14 shadow-sm text-center focus:ring-indigo-200 focus:border-indigo-200 block p-2 sm:text-sm border-gray-100 rounded-md"
+                placeholder="(#)"  
               />
               
             </div>
       
               <div className="flex items-center justify-center">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
+                <button className="bg-blue-500 hover:bg-blue-700 m-4 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
                   Create New Trip
                 </button>
               </div>
