@@ -35,6 +35,22 @@ const [formData, setFormData] = React.useState()
     <div class="w-full max-w-xs  items-center py-12">
       <form onSubmit={handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
+        <div class="mb-4">
+          <label htmlFor= "name" 
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="username"
+          >
+            Name
+          </label>
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="username"
+            type="text"
+            required= "true"
+            placeholder="name"
+            onChange={handleChange}
+          />
+        </div>
           <label htmlFor= "email" 
             class="block text-gray-700 text-sm font-bold mb-2"
             for="email"
@@ -43,9 +59,10 @@ const [formData, setFormData] = React.useState()
           </label>
           <input
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
+            id="email"
             type="text"
-            placeholder="Username"
+            required = "true"
+            placeholder="Email"
             onChange={handleChange}
           />
         </div>
@@ -60,6 +77,7 @@ const [formData, setFormData] = React.useState()
             class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
+            required ='true'
             placeholder="*********"
             onChange={handleChange}
           />

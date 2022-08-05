@@ -80,16 +80,11 @@ const Login = ({saveUser}) => {
             >
               Login
             </button>
-            <a
-              className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="password.reset"
-            >
-              Forgot Password?
-            </a>
+          
           </div>
         </form>
       
-     <button> 
+     <button className="bg-blue-500 hover:bg-blue-700 p-2 text-white mb-2 rounded font-bold"> 
         <Link to='/signup'>Sign Up</Link>
       </button>
 

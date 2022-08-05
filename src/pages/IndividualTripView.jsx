@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { PencilIcon as PencilIconSolid } from "@heroicons/react/outline";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import moment from 'moment';
+import { FaPlaneArrival }  from 'react-icons/fa'
+import { FaPlaneDeparture } from 'react-icons/fa'
 
 
 
@@ -50,9 +53,32 @@ const initialState = {
         <p> {trips?.departureCity} </p>
         <p> {trips?.arrivalCity} </p>
         <p> {trips?.ticketPrice} </p>
-        <p> {trips?.numberPassengers} </p>
+        <p># Passengers {trips?.numberPassengers} </p>
         <p> {trips?.airlineType} </p>
         <p> {trips?.flightId} </p>
+        <div>
+        <div className='bg-white bg-opacity-90 text-center m-4 rounded-lg w-1/ p-2'>
+              <h1 className='text-4xl m-6'><u>Flight</u></h1>
+              <div className='flex justify-center'>
+                <p>{trips?.flightObj?.itineraries[0].segments[0].departure.iataCode}</p>-<p>{trips?.flightObj?.itineraries[1].segments[0].departure.iataCode}</p>
+              </div>
+              <h3>Total Price: 💰{trips?.flightObj?.price.total}</h3><br/>
+              <div className='flex'>
+              <div>
+              <h2 className=  'flex px-6 py-2.5 bg-red-400 w-full text-white justify-center' >  <FaPlaneDeparture className='scale-150' /> </h2>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 text-white' >Flight Time: {trips?.flightObj?.itineraries[0].duration}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[0].segments[0].departure.at).format('HH:MM')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[0].segments[0].arrival.at).format('HH:MM')}</h3><br/><br/>
+              </div>
+              <div>
+              <h2 className = 'flex px-6 py-2.5 bg-red-400 text-white w-full justify-center ' >  <FaPlaneArrival className='scale-150' />  </h2>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>Flight Time: {trips?.flightObj?.itineraries[1].duration}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white'> Depart Time: {moment(trips?.flightObj?.itineraries[1].segments[0].departure.at).format('HH:MM')}</h3><br/>
+              <h3 className ='inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>Arrival Time: {moment(trips?.flightObj?.itineraries[1].segments[0].arrival.at).format('HH:MM')}</h3><br/>
+              </div>
+              </div>
+           </div>
+        </div>
         <div className="p-2">
         <button
           type="button"

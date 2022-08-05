@@ -16,6 +16,7 @@ import UserTrips from './pages/UserTrips';
 import FavoriteTrips from './components/FavoriteTrips';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import FlightPage from './pages/FlightPage'
+import Signout from './pages/Signout'
 
 // import Heart from "../../src/images/icons/hearts/heart.jpg";
 
@@ -26,8 +27,6 @@ function App() {
 
   const [trips, setTrips] = useState([])
 
-  // this users state will be removed for production 
-  //const [users, setUsers] = useState()
 
   // this will be the logged in user 
   const [user, setUser] = useState()
@@ -121,6 +120,7 @@ const updateTripsState = (id) => {
         <Route path='/login' element={<Login saveUser={saveUser}/>} />
         <Route path='/newtrip' element={<NewTrip dateAdapter={AdapterMoment} ticketFinder={ticketFinder} setTicketFinder={setTicketFinder} setFlightToken={setFlightToken} />} />
         <Route path='/signup' element={<SignUp saveUser = {saveUser} />} />
+        <Route path='/signout' element={<Signout />} />
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView setTrips={setTrips} trips={trips} /> } />
         <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} ticketFinder={ticketFinder} flightToken={flightToken} />} />
