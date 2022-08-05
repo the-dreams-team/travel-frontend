@@ -46,7 +46,7 @@ const initialState = {
 
   return (
     <div className="h-screen w-full">
-      <div className="mt-6 flex items-center flex-col container mx-auto columns-3 bg-slate-100 w-80 h-auto rounded-md p-4">
+      <div className="mt-6 flex items-center flex-col container mx-auto columns-3 bg-slate-100 w-1/2 h-auto rounded-md p-4">
         <h1> {trips?.tripName} </h1>
         <p> {trips?.date} </p>
         <p> {trips?.dateArrival} </p>
@@ -57,7 +57,7 @@ const initialState = {
         <p> {trips?.airlineType} </p>
         <p> {trips?.flightId} </p>
         <div>
-        <div className='bg-white bg-opacity-90 text-center m-4 rounded-lg w-1/ p-2'>
+        <div className='bg-white bg-opacity-90 text-center m-4 rounded-lg w-full p-2'>
               <h1 className='text-4xl m-6'><u>Flight</u></h1>
               <div className='flex justify-center'>
                 <p>{trips?.flightObj?.itineraries[0].segments[0].departure.iataCode}</p>-<p>{trips?.flightObj?.itineraries[1].segments[0].departure.iataCode}</p>
@@ -66,15 +66,23 @@ const initialState = {
               <div className='flex'>
               <div>
               <h2 className=  'flex px-6 py-2.5 bg-red-400 w-full text-white justify-center' >  <FaPlaneDeparture className='scale-150' /> </h2>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 text-white' >Flight Time: {trips?.flightObj?.itineraries[0].duration}</h3><br/>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[0].segments[0].departure.at).format('HH:MM')}</h3><br/>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[0].segments[0].arrival.at).format('HH:MM')}</h3><br/><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white text-sm' >Total Flight Time: {trips?.flightObj?.itineraries[0].duration}</h3><br/><br/>Flight 1 {trips?.flightObj?.itineraries[0].segments[0].departure.iataCode} - {trips?.flightObj?.itineraries[0].segments[0].arrival.iataCode}
+              {trips?.flightObj?.itineraries[0].segments.length > 1 ? <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[0].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[0].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/><br/>Flight 2 {trips?.flightObj?.itineraries[0].segments[1].departure.iataCode} - {trips?.flightObj?.itineraries[0].segments[1].arrival.iataCode}
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[0].segments[1].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[0].segments[1].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/><br/></div> : <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[0].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[0].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/><br/></div> }
+              
+
               </div>
               <div>
               <h2 className = 'flex px-6 py-2.5 bg-red-400 text-white w-full justify-center ' >  <FaPlaneArrival className='scale-150' />  </h2>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>Flight Time: {trips?.flightObj?.itineraries[1].duration}</h3><br/>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white'> Depart Time: {moment(trips?.flightObj?.itineraries[1].segments[0].departure.at).format('HH:MM')}</h3><br/>
-              <h3 className ='inline-block px-6 py-2.5 bg-blue-500 w-full text-white'>Arrival Time: {moment(trips?.flightObj?.itineraries[1].segments[0].arrival.at).format('HH:MM')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white text-sm'>Total Flight Time: {trips?.flightObj?.itineraries[1].duration}</h3><br/><br/>Flight 1 {trips?.flightObj?.itineraries[1].segments[0].departure.iataCode} - {trips?.flightObj?.itineraries[1].segments[0].arrival.iataCode}
+              {trips?.flightObj?.itineraries[1].segments.length > 1 ? <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[0].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[1].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/><br/>Flight 2 {trips?.flightObj?.itineraries[1].segments[1].departure.iataCode} - {trips?.flightObj?.itineraries[1].segments[1].arrival.iataCode}
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[1].segments[1].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[1].segments[1].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/><br/></div> : <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' > Depart Time: {moment(trips?.flightObj?.itineraries[1].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Arrival Time: {moment(trips?.flightObj?.itineraries[1].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/><br/></div> }
               </div>
               </div>
            </div>
