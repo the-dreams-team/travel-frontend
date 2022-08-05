@@ -64,8 +64,8 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
 
  
   return (
-    <div className="bg-yellow imageBack2  bg-opacity-80 w-full align-middle items-center text-center   min-h-screen  bg-auto  ">
-      <div className="flex items-center justify-center">
+    <div className="bg-yellow imageBack2 rounded bg-opacity-80 w-full align-middle items-center text-center   min-h-screen  bg-auto  ">
+      <div className="flex rounded items-center justify-center">
         
         
         <form
