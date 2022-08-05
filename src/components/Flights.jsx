@@ -132,10 +132,10 @@ const Flights = ({user, ticketFinder, flightToken}) => {
 
 
   return (
-    <div className=' h-full  bg-opacity-100  ' >
+    <div className=' h-full  bg-opacity-100 ' >
       <h1 className='bg-red-400 text-center' >{isLoading && 'Loading...'}</h1>
       <div className=' w-full flex justify-center items-center content-center object-center'>
-       <div className=' w-11/12 flex flex-wrap justify-content-center items-center content-center object-center '>
+       <div className=' w-12/12 flex flex-wrap justify-center items-center content-center object-center '>
         {flights.data?.map(flight => {
           return (<>
           
@@ -147,7 +147,7 @@ const Flights = ({user, ticketFinder, flightToken}) => {
               <h3>Total Price: 💰{flight.price.total}</h3><br/>
               {/* depart flight */}
               <h2 className=  'flex px-6 py-2.5 bg-red-400 w-full text-white justify-center' >  <FaPlaneDeparture className='scale-150' /> </h2>
-              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 text-white' > Total Flight Time: {flight.itineraries[0].duration}</h3>
+              <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' > Total Flight Time: {flight.itineraries[0].duration}</h3>
               {flight.itineraries[0].segments.length > 1 ? <div><h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' >{flight.itineraries[0].segments[0].departure.iataCode} Depart Time: {moment(flight.itineraries[0].segments[0].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
               <h3 className = 'inline-block px-6 py-2.5 bg-blue-300 w-full text-white' >{flight.itineraries[0].segments[0].arrival.iataCode} Arrival Time: {moment(flight.itineraries[0].segments[0].arrival.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
               <h3 className = 'inline-block px-6 py-2.5 bg-blue-500 w-full text-white' >{flight.itineraries[0].segments[1].departure.iataCode} Depart Time: {moment(flight.itineraries[0].segments[1].departure.at).format('YYYY-MM-DD hh:mm:ss a')}</h3><br/>
