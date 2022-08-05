@@ -24,7 +24,7 @@ const ExplainPage = ({setUser, user}) => {
       console.log("user id =>", user._id);
       console.log("user info =>", userInfo);
       axios
-        .post(`http://localhost:3020/user/${user._id}`, userInfo)
+        .post(` https://trip-commander-back.herokuapp.com/user/${user._id}`, userInfo)
         .then((res) => {
           console.log("response from user update =>", res.data);
           setUser(res.data);
@@ -34,7 +34,7 @@ const ExplainPage = ({setUser, user}) => {
   
   return (
     
-      <div className="bg-white opacity-90">
+      <div className="bg-white rounded opacity-90">
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:py-16 lg:px-8 lg:py-20">
       <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         <span className="block">Welcome {user?.name} to our Travel Planner</span>

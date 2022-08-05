@@ -40,7 +40,7 @@ const handleChange = (e) => {
 const handleSubmit = (e) => {
     e.preventDefault()
     console.log(formData)
-    axios.put(`http://localhost:8000/trips/${id}` , formData )
+    axios.put(` https://trip-commander-back.herokuapp.com/trips/${id}` , formData )
     .then(res => {
 
         setFormData(initialState)
@@ -50,7 +50,7 @@ const handleSubmit = (e) => {
 }
 
 useEffect(() => {
-    axios.get(`http://localhost:8000/trips/${id}`)
+    axios.get(` https://trip-commander-back.herokuapp.com/trips/${id}`)
     .then(res => {
         setFormData(res.data)
     })

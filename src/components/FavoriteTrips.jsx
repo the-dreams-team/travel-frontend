@@ -35,7 +35,7 @@ const FavoriteTrips = ({ UserTrips }) => {
             {trip?.favorite && (
               <> 
                 <div key={trip._id} className="w-1/2 flex wrap items-center justify-center mb-1 ">
-                  <div className="bg-red-500 mt-4   w-full h-full rounded-md m-2  text-center p-1 ">
+                  <div className="bg-red-500 mt-4  w-full h-full rounded-md m-2  text-center p-1 ">
                     <div className="tripTitle font-medium items-center bg-yellow-600 rounded-md">
                       {trip?.tripName}
                     </div>
@@ -46,10 +46,10 @@ const FavoriteTrips = ({ UserTrips }) => {
                     <div className="dates font-medium">
                       {trip?.departureDate} - {trip?.returnDate}{" "}
                     </div>
-                    <div className="dates font-medium">
-                      {" "}
-                      {trip?.flightId} - {trip?.airlineType}{" "}
+                    <div>
+                    Ticket Price: {trip?.flightObj?.price?.total}
                     </div>
+                    
                   </div>
                 </div>
               </>

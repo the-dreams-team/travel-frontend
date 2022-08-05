@@ -8,7 +8,7 @@ import { TbHeartBroken } from "react-icons/tb";
 
 const Trip = ({ alltrips, updateState, setTrips, updateFavorite }) => {
   const deleteTrip = (id) => {
-    axios.delete(`http://localhost:3020/trips/${id}`).then((res) => {
+    axios.delete(` https://trip-commander-back.herokuapp.com/trips/${id}`).then((res) => {
       console.log(res);
       updateState(id);
     });
@@ -21,14 +21,14 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite }) => {
     if (favorite === true) {
       //send axios request with favorite = false
       axios
-        .put(`http://localhost:3020/trips/${id}`, { favorite: false })
+        .put(` https://trip-commander-back.herokuapp.com/trips/${id}`, { favorite: false })
         .then((res) => {
           updateFavorite(res.data._id);
         });
     } else {
       //send axios request with favorite = true
       axios
-        .put(`http://localhost:3020/trips/${id}`, { favorite: true })
+        .put(` https://trip-commander-back.herokuapp.com/trips/${id}`, { favorite: true })
         .then((res) => {
           updateFavorite(res.data._id);
         });
@@ -37,23 +37,23 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite }) => {
   };
 
   return (
-    <div className="w-full flex  justify-center    ">
-      <div className="w-full flex-wrap flex  ">
+    <div className="w-full h-full flex  justify-center    ">
+      <div className="w-full h-full flex-wrap flex  ">
         {alltrips.map((trip) => {
           return (
             <>
-              <div className="mt-6 flex   items-center flex-col container mx-auto p-1 bg-yellow-600 rounded-md bg-opacity-80  w-5/12 h-auto">
+              <div className="mt-6 flex   items-center flex-col container mx-auto p-1 bg-yellow-500 bg-opacity-90  drop-shadow-md rounded-md  w-5/12 h-auto">
                 <div className="w-full">
-                  <div className="flex align-center justify-center ">
+                  <div className="flex align-center justify-center  ">
                     <button
                       onClick={() => deleteTrip(trip._id)}
                       type="button"
-                      className="inline-flex items-center px-2.5 py-1.5 border border-transparent
-                    text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 
-                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex px-6 py-3 items-center  border border-transparent
+                    text-xs font-medium rounded text-indigo-700 text-color-white bg-indigo-100
+                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:bg-red-500"
                     >
-                      🗑️
-                    </button>
+                      🗑️                                                                   
+                    </button>                                 
                   </div>
                  <div className="text-center">
                  <h2>TripName</h2>
