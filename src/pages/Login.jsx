@@ -25,7 +25,7 @@ const Login = ({saveUser}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('this is the sent form data', formData);
-    axios.post('http://localhost:3020/login', formData)
+    axios.post('https://trip-commander-back.herokuapp.com/login', formData)
     .then(res => {
       console.log('this is the response from the server ->', res.data);
       localStorage.removeItem('traveltoken');

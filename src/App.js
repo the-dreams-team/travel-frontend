@@ -10,7 +10,6 @@ import NewTrip from './pages/NewTrip';
 import EditTrip from './pages/EditTrip';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
-import NavTest from './components/NavTest';
 import IndividualTripView from './pages/IndividualTripView'
 import UserTrips from './pages/UserTrips';
 import FavoriteTrips from './components/FavoriteTrips';
@@ -58,7 +57,7 @@ function App() {
       }
     })
 
-      instance.get('http://localhost:3020/trips')
+      instance.get(' https://trip-commander-back.herokuapp.com/trips')
       .then(res => {
         if(res.data.msg ==='you need to log in'){
           
@@ -113,7 +112,7 @@ const updateTripsState = (id) => {
     <div className= "mainBg">
   
       {/* <Nav /> */}
-      <NavTest className="z-auto"/>
+      <Nav className="z-auto"/>
       <Routes>
         <Route path='/' element={<Home UserTrips= {trips} user={user} />}/>
         <Route path='/usertrips' element={<UserTrips alltrips={trips} updateState={updateTripsState} updateFavorite={updateFavorite}/>} />

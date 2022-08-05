@@ -16,7 +16,7 @@ const [formData, setFormData] = React.useState()
 
   const handleSubmit = (e)=> {
     e.preventDefault()
-    axios.post('http://localhost:3020/signup', formData)
+    axios.post('https://trip-commander-back.herokuapp.com/signup', formData)
     .then(res => {
       console.log(res.data)
       localStorage.removeItem('traveltoken');

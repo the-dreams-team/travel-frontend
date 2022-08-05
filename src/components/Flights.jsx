@@ -125,7 +125,7 @@ const Flights = ({user, ticketFinder, flightToken}) => {
 
   const handleSave = (flightid) => {
     
-    saveInstance.put(`http://localhost:3020/trips/${ticketFinder._id}`, { flightObj: flightid}  )
+    saveInstance.put(`https://trip-commander-back.herokuapp.com/trips/${ticketFinder._id}`, { flightObj: flightid}  )
     .then(res => console.log(res.data))
     navigate('/')
   }

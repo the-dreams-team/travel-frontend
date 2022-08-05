@@ -40,6 +40,9 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
 
 
   const token = localStorage.getItem('traveltoken');
+  if(token === null || token === undefined){
+    navigate('/login')
+  }
   const createInstance = axios.create({
     headers: {
       'Authorization': token
@@ -52,7 +55,7 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData)
-    createInstance.post("http://localhost:3020/trips", formData).then((res) => {
+    createInstance.post("https://trip-commander-back.herokuapp.com/trips", formData).then((res) => {
       setFormData(initialState);
       setTicketFinder(res.data);
       navigate("/trip/flights");
