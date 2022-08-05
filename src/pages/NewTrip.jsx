@@ -73,7 +73,7 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
                       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
                         <div className="text-center">
                           <h2 className="text-base font-semibold text-indigo-600 tracking-wide uppercase">
-                            FIll Form
+                            Fill Form
                           </h2>
                           <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
                             Create a New Trip
@@ -93,6 +93,7 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
                           type="name"
                           name="tripName"
                           id="tripName"
+                          required='true'
                           value={formData.tripName}
                           onChange={handleChange}
                           className="  mt-1 m-1 w-1/3 shadow-sm text-center focus:ring-indigo-200 focus:border-indigo-200 block p-2 sm:text-sm border-gray-100 rounded-md"
@@ -140,6 +141,7 @@ const NewTrip = ({ dateAdapter, ticketFinder, setTicketFinder, setFlightToken })
                 type="text"
                 name="numberPasssengers"
                 id="numberPassengers"
+                required='true'
                 value={formData.numberPassengers}
                 onChange={handleChange}
                 className="  mt-2 m-2 w-1/3 shadow-sm text-center focus:ring-indigo-500 focus:border-indigo-500 block p-2 sm:text-sm border-gray-300 rounded-md"

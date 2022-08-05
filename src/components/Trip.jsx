@@ -74,9 +74,11 @@ const Trip = ({ alltrips, updateState, setTrips, updateFavorite }) => {
                     </div>
 
                     <div className="dates font-medium">
-                      {trip.flightId} - {trip.airlineType}
+                    Ticket Price: {trip?.flightObj?.price?.total}
                     </div>
                     <div>{trip.favorite}</div>
+
+                  
 
                     <div
                       style={{
