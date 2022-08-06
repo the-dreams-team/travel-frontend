@@ -38,7 +38,7 @@ const ExplainPage = ({setUser, user}) => {
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:py-16 lg:px-8 lg:py-20">
       <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
         <span className="block">Welcome {user?.name} to our Travel Planner</span>
-        <span className="block text-indigo-600">Try adding your trip itinerary to see flight prices, weather, and even track multiple trips.</span>
+        <span className="block text-indigo-600">Try adding your trip itinerary to see flight prices, and even track multiple trips.</span>
       </h2>
       <p className="text-1xl font-extrabold tracking-tight text-gray-900 sm:text-1xl">
         <span className="block text-indigo-600">Below is your favorited trips (if not shown try favorting a trip)</span>
