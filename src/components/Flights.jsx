@@ -77,14 +77,14 @@ const Flights = ({user, ticketFinder, flightToken}) => {
   const options = {
     method: 'POST',
     data: tripInfo,
-    url: 'https://test.api.amadeus.com/v2/shopping/flight-offers'
+    url: 'https://api.amadeus.com/v2/shopping/flight-offers'
   }
 
 
 
   // this is requesting the flights specific to what the user inputed in the create new trip page
   const findFlights = () => {
-      instance(`https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${departIATA}&destinationLocationCode=${arrivalIATA}&departureDate=${departDate}&returnDate=${returnDate}&adults=${numAdults}&nonStop=true&currencyCode=USD&max=5`)
+      instance(`https://api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${departIATA}&destinationLocationCode=${arrivalIATA}&departureDate=${departDate}&returnDate=${returnDate}&adults=${numAdults}&nonStop=true&currencyCode=USD&max=5`)
       .then(res => {
         console.log(res.data)
         setFlights(res.data)

@@ -7,13 +7,13 @@ export const useFlightToken = () => {
 
   const formInfo = new URLSearchParams();
   formInfo.append('grant_type', 'client_credentials');
-  formInfo.append('client_id', 'zC57BQWCUd8xcSypOqHaOPooIzLdzEvy');
-  formInfo.append('client_secret', 'b16ED8BXAqJHtNMr');
+  formInfo.append('client_id', 'oArnoQQYhAoQ4dRLGm0YAWlRyqVAjwtk');
+  formInfo.append('client_secret', 'cnGXPMckKAQEhAOv');
 
   useEffect(() => {
 
     const flightInstance = axios.create()
-    flightInstance.post('https://test.api.amadeus.com/v1/security/oauth2/token', formInfo)
+    flightInstance.post('https://api.amadeus.com/v1/security/oauth2/token', formInfo)
     .then(res => {
       setToken(res.data.access_token)
     })
