@@ -7,8 +7,8 @@ export const useFlightToken = () => {
 
   const formInfo = new URLSearchParams();
   formInfo.append('grant_type', 'client_credentials');
-  formInfo.append('client_id', '6fQ1iwSDGlZIGWiqKr803zl2zjXcpU4l');
-  formInfo.append('client_secret', 'czcvPwO9YNLn88mR');
+  formInfo.append('client_id', 'zC57BQWCUd8xcSypOqHaOPooIzLdzEvy');
+  formInfo.append('client_secret', 'b16ED8BXAqJHtNMr');
 
   useEffect(() => {
 
