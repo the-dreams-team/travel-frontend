@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Profile = ({ setUser, user }) => {
+  
+  const navigate = useNavigate();
+
   const initialState = {
     name: user?.name,
     email: user?.email,
@@ -9,6 +13,12 @@ const Profile = ({ setUser, user }) => {
 
   const [userInfo, setUserInfo] = useState(initialState);
   const [updateForm, showUpdateForm] = useState(false);
+
+  const userToken = localStorage.getItem('traveltoken')
+  if(userToken === null || userToken === undefined){
+    navigate('/login');
+  }
+
 
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.id]: e.target.value });
