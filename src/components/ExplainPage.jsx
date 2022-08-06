@@ -24,7 +24,7 @@ const ExplainPage = ({setUser, user}) => {
       console.log("user id =>", user._id);
       console.log("user info =>", userInfo);
       axios
-        .post(` https://trip-commander-back.herokuapp.com/user/${user._id}`, userInfo)
+        .post(`https://trip-commander-back.herokuapp.com/user/${user._id}`, userInfo)
         .then((res) => {
           console.log("response from user update =>", res.data);
           setUser(res.data);

@@ -1,9 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import mainlogo from '../images/Logo/project3Logo.png'
-import profilePic from '../../src/images/icons/weather/sun.jpg'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
+
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'New Trip', href: '/newtrip', current: false },
@@ -39,12 +38,12 @@ export default function Nav() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src = {mainlogo}
+                    src = 'https://i.imgur.com/0mPcYZU.png'
                     alt="logo"
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src = {mainlogo}
+                    src = 'https://i.imgur.com/0mPcYZU.png'
                     alt="logo"
                   />
                 </div>
@@ -75,7 +74,7 @@ export default function Nav() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={profilePic}
+                        src="https://i.imgur.com/fofdHmZ.jpg"
                         alt="sun logo"
                       />
                     </Menu.Button>

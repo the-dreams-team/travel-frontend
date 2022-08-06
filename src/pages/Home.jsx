@@ -2,8 +2,8 @@ import React from "react";
 import Trip from "../components/Trip";
 import { Link } from "react-router-dom";
 import ExplainPage from "../components/ExplainPage";
-import FavoriteTrips from "../components/FavoriteTrips";
-import Heart from "../../src/images/icons/hearts/heart.jpg";
+import FavoriteTrips from  "../components/FavoriteTrips";
+
 const Home = ({ UserTrips, user}) => {
 
 

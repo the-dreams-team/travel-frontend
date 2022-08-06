@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Link } from "react-router-dom";
-import Trip from "./Trip";
-import HeartP from "../../src/images/icons/hearts/hearts.png";
+
 
 const FavoriteTrips = ({ UserTrips }) => {
   return (
@@ -14,7 +12,7 @@ const FavoriteTrips = ({ UserTrips }) => {
      <div className="w-full flex justify-center">   
         <img
           className="block h-8 w-auto"
-          src={HeartP}
+          src="https://i.imgur.com/YqDhh6n.png"
           alt="logo"
         ></img>
         <h2 className="text-3xl  font-extrabold tracking-tight text-gray-900  sm:text-4xl">
@@ -22,7 +20,7 @@ const FavoriteTrips = ({ UserTrips }) => {
         </h2>
         <img
           className="block h-8 w-auto"
-          src={HeartP}
+          src="https://i.imgur.com/YqDhh6n.png"
           alt="logo"
         ></img>
       </div>
