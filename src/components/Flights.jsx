@@ -4,6 +4,7 @@ import moment from 'moment';
 import { FaPlaneArrival }  from 'react-icons/fa'
 import { FaPlaneDeparture } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom';
+import {ThreeDots} from 'react-loading-icons'
 import qs from 'qs';
 
 const Flights = ({user, ticketFinder, flightToken}) => {
@@ -133,7 +134,7 @@ const Flights = ({user, ticketFinder, flightToken}) => {
 
   return (
     <div className=' h-full  bg-opacity-100 ' >
-      <h1 className='bg-red-400 text-center' >{isLoading && 'Loading...'}</h1>
+      <h1 className='bg-red-400 flex justify-center`' >{isLoading && <ThreeDots className='w-full h-full flex justify-center'/> }</h1>
       <div className=' w-full flex justify-center items-center content-center object-center'>
        <div className=' w-12/12 flex flex-wrap justify-center items-center content-center object-center '>
         {flights.data?.map(flight => {
