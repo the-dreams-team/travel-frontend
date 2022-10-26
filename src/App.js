@@ -16,6 +16,8 @@ import FavoriteTrips from './components/FavoriteTrips';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import FlightPage from './pages/FlightPage'
 import Signout from './pages/Signout'
+import ErrorPage from './pages/ErrorPage';
+
 
 // import Heart from "../../src/images/icons/hearts/heart.jpg";
 
@@ -123,6 +125,8 @@ const updateTripsState = (id) => {
         <Route path='/profile' element={<Profile user={user} setUser={setUser} />} />
         <Route path='/trip/:id' element={<IndividualTripView setTrips={setTrips} trips={trips} /> } />
         <Route path='/trip/flights' element={<FlightPage user={user} trips={trips} ticketFinder={ticketFinder} flightToken={flightToken} />} />
+        <Route path='*' element={<ErrorPage />} />
+
         
       
       </Routes>
